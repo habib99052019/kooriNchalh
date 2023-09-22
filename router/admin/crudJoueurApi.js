@@ -61,5 +61,6 @@ router.delete('/delettejoueur', async (req, res) => {
     }catch(error){
         res.send(error.message)   
     }
-    
+    //jjjj
 });
+module.exports = router;

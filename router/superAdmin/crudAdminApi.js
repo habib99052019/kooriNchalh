@@ -63,3 +63,4 @@ router.delete('/deletteAdmin', async (req, res) => {
     }
     
 });
+module.exports = router;
