@@ -1,21 +1,30 @@
 const express = require('express')
 const router = express.Router();
 const lodash=require('lodash')
-const adminSchema = require('../model/adminSchema')
+const adminSchema = require('./../../models/adminSchema')
+
 const bcrypt=require('bcrypt');
 const jwt=require('jsonwebtoken');
+
+console.log("adcRUD")
 router.post('/addAdmin', async (req, res) => {
     try{
-        var admin = await adminSchema.findOne({email:req.body.login});
+        var admin = await adminSchema.findOne({login:req.body.login});
 
 
     if(!admin)
        
    { 
     var admin =  await  adminSchema.create(req.body)
+    const saltRounds = 10;
+    const salt = bcrypt.genSalt(saltRounds)
+   admin.password = await bcrypt.hash(admin.password, saltRounds);// pour crypter password
+
+    admin.save();
    return res.send({
-       message:true
-   })
+       message: true,
+       id: admin._id
+    })
     }
     else{
         return res.send({message:false})
@@ -63,4 +72,6 @@ router.delete('/deletteAdmin', async (req, res) => {
     }
     
 });
+
+
 module.exports = router;

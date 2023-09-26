@@ -1,20 +1,27 @@
 const express = require('express')
 const router = express.Router();
 const lodash=require('lodash')
-const joueurSchema = require('../model/joueurSchema')
+const joueurSchema = require('./../../models/joueurSchema')
+const adminSchema = require('./../../models/adminSchema')
 const bcrypt=require('bcrypt');
 const jwt=require('jsonwebtoken');
+console.log("joueur")
 router.post('/addjoueur', async (req, res) => {
     try{
-        var joueur = await joueurSchema.findOne({email:req.body.login});
+        var joueur = await joueurSchema.findOne({login:req.body.login});
 
 
     if(!joueur)
        
    { 
     var joueur =  await  joueurSchema.create(req.body)
+    const saltRounds = 10;
+    const salt = bcrypt.genSalt(saltRounds)
+  jourur.password = await bcrypt.hash(joueur.password, saltRounds);// pour crypter password
+  await joueurSchema.findByIdAndUpdate({ _id:req.body.admin }, { $push: { joueurs: joueur._id } })
    return res.send({
-       message:true
+       message:true,
+       id:joueur._id
    })
     }
     else{
@@ -37,7 +44,7 @@ router.post('/addjoueur', async (req, res) => {
 });
 router.put('/updatejoueur', async (req, res) => {
     try{
-        var  joueur = await joueurSchema.findByIdAndUpdate(req.params.id, req.body, { new: true })
+        var  joueur = await adminSchema.findByIdAndUpdate(req.params.id, req.body, { new: true })
  
         res.send({message:true})
    
@@ -63,4 +70,6 @@ router.delete('/delettejoueur', async (req, res) => {
     }
     //jjjj
 });
+
+
 module.exports = router;

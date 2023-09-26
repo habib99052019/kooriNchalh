@@ -4,9 +4,10 @@ const Schema = mongoose.Schema;
 const  adminSchema  = new mongoose.Schema({
    numero:Number,
    historique:[{string}],
+   admin:{ type: Schema.Types.ObjectId, ref:'adminSchema'},
    ticket:[{ type: Schema.Types.ObjectId, ref:'ticketSchema'}],
-   joueurs: [{ type: Schema.Types.ObjectId, ref:'joueurSchema'}]
+   joueurs: [{ type: Schema.Types.ObjectId, ref:'joueurSchema'}],
  
     
 });
-module.exports=mongoose.model('admin',joueursSchema);
+module.exports=mongoose.model('roulette',roulette);
