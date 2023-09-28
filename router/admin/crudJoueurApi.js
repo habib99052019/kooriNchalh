@@ -6,6 +6,15 @@ const adminSchema = require('./../../models/adminSchema')
 const bcrypt=require('bcrypt');
 const jwt=require('jsonwebtoken');
 console.log("joueur")
+router.get('/', async (req, res) => {
+    var joueurs = await joueurSchema.find(); 
+    res.send(joueurs)
+})
+router.get('/:id', async (req, res) => {
+    var joueur = await joueurSchema.findById(req.params.id) 
+    res.send(joueur)
+})
+
 router.post('/addjoueur', async (req, res) => {
     try{
         var joueur = await joueurSchema.findOne({login:req.body.login});
@@ -17,8 +26,10 @@ router.post('/addjoueur', async (req, res) => {
     var joueur =  await  joueurSchema.create(req.body)
     const saltRounds = 10;
     const salt = bcrypt.genSalt(saltRounds)
-  jourur.password = await bcrypt.hash(joueur.password, saltRounds);// pour crypter password
-  await joueurSchema.findByIdAndUpdate({ _id:req.body.admin }, { $push: { joueurs: joueur._id } })
+  joueur.password = await bcrypt.hash(joueur.password, saltRounds);// pour crypter password
+    await joueur.save()
+  await adminSchema.findByIdAndUpdate({ _id:req.body.admin }, { $push: { Listejoueurs: joueur._id } })
+
    return res.send({
        message:true,
        id:joueur._id

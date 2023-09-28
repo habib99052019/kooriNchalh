@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const  adminSchema  = new mongoose.Schema({
+const   roulette = new mongoose.Schema({
    numero:Number,
    historique:[{string}],
    admin:{ type: Schema.Types.ObjectId, ref:'adminSchema'},

@@ -14,7 +14,7 @@ app.use(express.urlencoded({ limit: '50mb', extended: false, parameterLimit: 500
  const connect = require('./dateBase/connect')
  const admin=require('./router/superAdmin/crudAdminApi')
  const joueur= require("./router/admin/crudJoueurApi");
- const authAmin=require("./router/auth/authAdmin&SuperAdmin");
+ const authAdmin=require("./router/auth/authAdmin&SuperAdmin");
  const authJoueur=require("./router/auth/authJoueur");
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -25,8 +25,8 @@ app.use((req, res, next) => {
 
 app.use('/admin',admin);
 app.use('/joueur',joueur);
-app.use('/loginAdmin',admin);
-app.use('/loginJoueur',joueur);
+app.use('/loginAdmin',authAdmin);
+app.use('/loginJoueur',authJoueur);
 //routes
 // "bcrypt": "^5.0.0",
 // "body-parser": "^1.19.0",

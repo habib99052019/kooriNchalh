@@ -7,6 +7,19 @@ const bcrypt=require('bcrypt');
 const jwt=require('jsonwebtoken');
 
 console.log("adcRUD")
+router.get('/', async (req, res) => {
+    var admins = await adminSchema.find()
+        res.send(admins)
+})
+router.get('/:id', async (req, res) => {
+    var admin=  await adminSchema.findById(req.params.id)
+    res.send(admin)
+})
+router.get('/joueurs/:id', async (req, res) => {
+    var joueurs= await adminSchema.findById(req.params.id).findById(req.params.id).populate('Listejoueurs');
+    res.send(joueurs)
+  
+})
 router.post('/addAdmin', async (req, res) => {
     try{
         var admin = await adminSchema.findOne({login:req.body.login});
@@ -20,7 +33,7 @@ router.post('/addAdmin', async (req, res) => {
     const salt = bcrypt.genSalt(saltRounds)
    admin.password = await bcrypt.hash(admin.password, saltRounds);// pour crypter password
 
-    admin.save();
+   await  admin.save();
    return res.send({
        message: true,
        id: admin._id

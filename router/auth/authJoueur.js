@@ -5,7 +5,7 @@ const joueurSchema = require('./../../models/joueurSchema')
 const adminSchema = require('./../../models/adminSchema')
 const bcrypt=require('bcrypt');
 const jwt=require('jsonwebtoken');
-console.log('authJoueur')
+console.log('authJoueur1')
 router.post('/', async (req, res) => {
    
    

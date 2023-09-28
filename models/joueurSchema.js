@@ -16,4 +16,4 @@ const  joueurSchema  = new mongoose.Schema({
    
     
   });
-module.exports=mongoose.model('joueur',joueurSchema);
+module.exports=mongoose.model('joueurSchema',joueurSchema);
