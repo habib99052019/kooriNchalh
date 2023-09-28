@@ -40,7 +40,7 @@ router.post('/addjoueur', async (req, res) => {
     if(!joueur1)
        
     { 
-    var joueur =  await  joueurSchema.create(joueur1)
+    var joueur =  await  joueurSchema.create(req.body)
     console.log(joueur ,"1")
     // const saltRounds = 10;
     //const myPlaintextPassword = 's0/\/\P4$$w0rD';
