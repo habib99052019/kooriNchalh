@@ -22,7 +22,7 @@ router.get('/', async (req, res) => {
         res.send(admins)
 })
 router.get('/:id', async (req, res) => {
-    var admin=  await adminSchema.findById(req.params.id)
+    var admin=  await adminSchema.findById(req.params.id).populate('Listejoueurs');
     res.send(admin)
 })
 router.get('/joueurs/:id', async (req, res) => {
@@ -83,8 +83,8 @@ router.put('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
     try{
         const adminDelete = await adminSchema.deleteOne({ _id: req.params.id }).then(async (group) => {
-            var prods = await   adminSchema.find();
-            res.send(prods)
+            var admins = await   adminSchema.find();
+            res.send(admins)
           })
         
    
