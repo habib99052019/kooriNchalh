@@ -8,12 +8,16 @@ const jwt=require('jsonwebtoken');
 console.log("joueur")
 
 // async function func(){
+//     var joueurs = await joueurSchema.find(); 
+//    console.log(joueurs)
    
-//  catch(error){
-//     console.log(error.message)   
-// }
-
-
+        
+// //    for (let i = 0; i < joueurs.length ; i++) {
+// //      await joueurSchema.deleteOne({ _id: joueurs[i]._id })
+      
+// //  }
+// //  var  joueu =await joueurSchema.find()
+// //  console.log(joueu ,"d")
 // }
 // func()
 router.get('/', async (req, res) => {
