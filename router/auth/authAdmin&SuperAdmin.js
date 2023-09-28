@@ -21,7 +21,11 @@ router.post('/', async (req, res) => {
 
                 console.log(admin);
                 // res.send({token: token})  pour envoyer comme objet  json 
-                res.header('Authorization', token).send({ message: true , admin: admin._id,token: token })
+                res.header('Authorization', token).send({ 
+                    message: true , 
+                    admin: admin._id,
+                    role:admin.role,
+                      token: token })
             }
             else { //res.status(201).send("mots de passe incorrect")
                 return res.send({ message: false })
