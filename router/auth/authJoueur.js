@@ -14,9 +14,11 @@ router.post('/', async (req, res) => {
 
          
         if (joueur) {
+            const  test = await bcrypt.compare(req.body.password,joueur.password)
+           
             console.log(joueur);
         
-            if (req.body.password==joueur.password) {
+            if (test) {
                 var token = jwt.sign({ _id: joueur._id }, 'privateKey', { expiresIn: '1d' })
 
                 console.log(joueur);

@@ -14,8 +14,9 @@ router.post('/', async (req, res) => {
 
          
         if (admin) {
-            console.log(admin);
+            console.log(admin,12);
            const  test = await bcrypt.compare(req.body.password, admin.password)
+                console.log(test ,5)
             if (test) {
                 var token = jwt.sign({ _id: admin._id }, 'privateKey', { expiresIn: '1d' })
 
