@@ -5,8 +5,18 @@ const adminSchema = require('./../../models/adminSchema')
 
 const bcrypt=require('bcrypt');
 const jwt=require('jsonwebtoken');
+// async function func(){
+//     var admin = await adminSchema.findOne({_id:"6512b96920f1d3f79218cfdb"})
+//     const saltRounds = 10;
+//     const salt = bcrypt.genSalt(saltRounds)
+//    admin.password = await bcrypt.hash(admin.password, saltRounds);// pour crypter password
+//     admin.isSuperAdmin=true
+//    await  admin.save();
+//     console.log(admin)
 
-console.log("adcRUD")
+// }
+// func()
+console.log("declarer super admin")
 router.get('/', async (req, res) => {
     var admins = await adminSchema.find()
         res.send(admins)
@@ -57,7 +67,7 @@ router.post('/addAdmin', async (req, res) => {
     }
     
 });
-router.put('/updateAdmin', async (req, res) => {
+router.put('/:id', async (req, res) => {
     try{
         var  admin = await adminSchema.findByIdAndUpdate(req.params.id, req.body, { new: true })
  
@@ -70,7 +80,7 @@ router.put('/updateAdmin', async (req, res) => {
     }
     
 });
-router.delete('/deletteAdmin', async (req, res) => {
+router.delete('/:id', async (req, res) => {
     try{
         const adminDelete = await adminSchema.deleteOne({ _id: req.params.id }).then(async (group) => {
             var prods = await   adminSchema.find();

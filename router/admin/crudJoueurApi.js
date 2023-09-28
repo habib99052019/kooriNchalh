@@ -53,7 +53,7 @@ router.post('/addjoueur', async (req, res) => {
     }
     
 });
-router.put('/updatejoueur', async (req, res) => {
+router.put('/:id', async (req, res) => {
     try{
         var  joueur = await adminSchema.findByIdAndUpdate(req.params.id, req.body, { new: true })
  
@@ -66,7 +66,7 @@ router.put('/updatejoueur', async (req, res) => {
     }
     
 });
-router.delete('/delettejoueur', async (req, res) => {
+router.delete('/:id', async (req, res) => {
     try{
         const joueurDelete = await joueurSchema.deleteOne({ _id: req.params.id }).then(async (group) => {
             var prods = await   joueurSchema.find();
