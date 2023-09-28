@@ -7,20 +7,21 @@ const bcrypt=require('bcrypt');
 const jwt=require('jsonwebtoken');
 console.log("joueur")
 
-async function func(){
-    var joueurs = await joueurSchema.find(); 
+// async function func(){
+//     var joueurs = await joueurSchema.find(); 
 
-   console.log(joueurs)
+//    console.log(joueurs)
    
         
-   for (let i = 0; i < joueurs.length ; i++) {
-     await joueurSchema.deleteOne({ _id: joueurs[i]._id })
+//    for (let i = 0; i < joueurs.length ; i++) {
+//      await joueurSchema.deleteOne({ _id: joueurs[i]._id })
       
- }
- var  joueu =await joueurSchema.find()
- console.log(joueu ,"d")
-}
-func()
+//  }
+//  var  joueu =await joueurSchema.find()
+//  console.log(joueu ,"d")
+// }
+// func()
+//vv
 router.get('/', async (req, res) => {
     var joueurs = await joueurSchema.find(); 
     res.send(joueurs)
