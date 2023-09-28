@@ -6,6 +6,16 @@ const adminSchema = require('./../../models/adminSchema')
 const bcrypt=require('bcrypt');
 const jwt=require('jsonwebtoken');
 console.log("joueur")
+
+// async function func(){
+   
+//  catch(error){
+//     console.log(error.message)   
+// }
+
+
+// }
+// func()
 router.get('/', async (req, res) => {
     var joueurs = await joueurSchema.find(); 
     res.send(joueurs)
@@ -17,35 +27,29 @@ router.get('/:id', async (req, res) => {
 
 router.post('/addjoueur', async (req, res) => {
     try{
-        var joueur = await joueurSchema.findOne({login:req.body.login});
-
-
-    if(!joueur)
+        var joueur1 = await joueurSchema.findOne({login:req.body.login});
+    
+    
+    if(!joueur1)
        
-   { 
-    var joueur =  await  joueurSchema.create(req.body)
+    { 
+    var joueur =  await  joueurSchema.create(joueur)
+    console.log(joueur ,"1")
     const saltRounds = 10;
     const salt = bcrypt.genSalt(saltRounds)
-  joueur.password = await bcrypt.hash(joueur.password, saltRounds);// pour crypter password
-    await joueur.save()
-  await adminSchema.findByIdAndUpdate({ _id:req.body.admin }, { $push: { Listejoueurs: joueur._id } })
-
-   return res.send({
-       message:true,
-       id:joueur._id
-   })
+    joueur.password = await bcrypt.hash(joueur.password, saltRounds);// pour crypter password
+    
+    await  joueur.save();
+    console.log(joueur,"2")
+    await adminSchema.findByIdAndUpdate({ _id:joueur.admin }, { $push: { Listejoueurs: joueur._id } })
+    res.send({message:true,
+               joueur:joueur._id})
     }
     else{
-        return res.send({message:false})
+       res.send({message:false})
     }
-   
- /*var  user  =new userSchema({
-           nom:req.params.nom,
-         age:req.params.age     //tu peut creer d'apres les parametres /:nom/:age en api de poste
-      
-   })    
-    /*  user = await userSchema.create(user);*/
-   
+
+    
         
     
     }catch(error){
@@ -68,13 +72,11 @@ router.put('/:id', async (req, res) => {
 });
 router.delete('/:id', async (req, res) => {
     try{
-        const joueurDelete = await joueurSchema.deleteOne({ _id: req.params.id }).then(async (group) => {
-            var prods = await   joueurSchema.find();
-            res.send(prods)
-          })
+        const joueurDelete = await joueurSchema.deleteOne({ _id: req.params.id })
         
    
-        
+      const  joueurs =await joueurSchema.find()
+      res.send(joueurs)
     
     }catch(error){
         res.send(error.message)   
