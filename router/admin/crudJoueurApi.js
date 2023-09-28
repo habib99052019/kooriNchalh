@@ -7,20 +7,20 @@ const bcrypt=require('bcrypt');
 const jwt=require('jsonwebtoken');
 console.log("joueur")
 
-// async function func(){
-//     var joueurs = await joueurSchema.find(); 
+async function func(){
+    var joueurs = await joueurSchema.find(); 
 
-//    console.log(joueurs)
+   console.log(joueurs)
    
         
-//    for (let i = 0; i < joueurs.length ; i++) {
-//      await joueurSchema.deleteOne({ _id: joueurs[i]._id })
+   for (let i = 0; i < joueurs.length ; i++) {
+     await joueurSchema.deleteOne({ _id: joueurs[i]._id })
       
-//  }
-//  var  joueu =await joueurSchema.find()
-//  console.log(joueu ,"d")
-// }
-// func()
+ }
+ var  joueu =await joueurSchema.find()
+ console.log(joueu ,"d")
+}
+func()
 //vv
 router.get('/', async (req, res) => {
     var joueurs = await joueurSchema.find(); 
@@ -40,7 +40,7 @@ router.post('/addjoueur', async (req, res) => {
     if(!joueur1)
        
     { 
-    var joueur =  await  joueurSchema.create(joueur)
+    var joueur =  await  joueurSchema.create(joueur1)
     console.log(joueur ,"1")
     // const saltRounds = 10;
     //const myPlaintextPassword = 's0/\/\P4$$w0rD';
