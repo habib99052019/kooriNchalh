@@ -9,6 +9,7 @@ console.log("joueur")
 
 // async function func(){
 //     var joueurs = await joueurSchema.find(); 
+
 //    console.log(joueurs)
    
         
@@ -30,6 +31,7 @@ router.get('/:id', async (req, res) => {
 })
 
 router.post('/addjoueur', async (req, res) => {
+   
     try{
         var joueur1 = await joueurSchema.findOne({login:req.body.login});
     
@@ -50,7 +52,7 @@ router.post('/addjoueur', async (req, res) => {
                joueur:joueur._id})
     }
     else{
-       res.send({message:false})
+      res.send({message:false})
     }
 
     
