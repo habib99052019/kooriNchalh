@@ -6,6 +6,7 @@ const  ticketSchema  = new mongoose.Schema({
    condition:[],
    solde:Number,
    gagnion:Boolean,
+   realTime:Boolean,
    valide:Boolean,
    joueur:{ type: Schema.Types.ObjectId, ref:'joueurSchema'}
  

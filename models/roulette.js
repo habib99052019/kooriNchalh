@@ -6,7 +6,7 @@ const   roulette = new mongoose.Schema({
    historique:[{string}],
    admin:{ type: Schema.Types.ObjectId, ref:'adminSchema'},
    ticket:[{ type: Schema.Types.ObjectId, ref:'ticketSchema'}],
-   joueurs: [{ type: Schema.Types.ObjectId, ref:'joueurSchema'}],
+   joueurs: [{ type: Schema.Types.ObjectId, ref:'joueurSchema'}]
  
     
 });
