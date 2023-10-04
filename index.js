@@ -16,6 +16,7 @@ app.use(express.urlencoded({ limit: '50mb', extended: false, parameterLimit: 500
  const joueur= require("./router/admin/crudJoueurApi");
  const authAdmin=require("./router/auth/authAdmin&SuperAdmin");
  const authJoueur=require("./router/auth/authJoueur");
+ const gestionRoulette=require("./router/joueur/gestionRoulette");
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
@@ -27,6 +28,7 @@ app.use('/admin',admin);
 app.use('/joueur',joueur);
 app.use('/loginAdmin',authAdmin);
 app.use('/loginJoueur',authJoueur);
+app.use('/Roulette',gestionRoulette);
 //routes
 // "bcrypt": "^5.0.0",
 // "body-parser": "^1.19.0",

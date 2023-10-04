@@ -8,12 +8,12 @@ const  joueurSchema  = new mongoose.Schema({
     login:String,
     password:String,
     teleJoueur:String,
-    tiket:[],
+    tikets:[{ type: Schema.Types.ObjectId, ref:'ticketSchema'}],
     tiketRealTime:[],
     solde:Number,
     admin:{ type: Schema.Types.ObjectId, ref:'adminSchema'}
   
    
-    
+   
   });
 module.exports=mongoose.model('joueurSchema',joueurSchema);

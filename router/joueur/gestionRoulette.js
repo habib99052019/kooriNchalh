@@ -3,8 +3,27 @@ const router = express.Router();
 const lodash=require('lodash')
 const joueurSchema = require('./../../models/joueurSchema')
 const adminSchema = require('./../../models/adminSchema')
+const ticketSchema=require('./../../models/tiket')
 const bcrypt=require('bcrypt');
 const jwt=require('jsonwebtoken');
+//add ticket
+router.post('/addTicket', async (req, res) => {
+   
+    try{
+    
+        var ticket =  await  ticketSchema.create(req.body)
+  
+        await joueurSchema.findByIdAndUpdate({ _id:ticket.joueur}, { $push: { tikets: ticket._id } })
+        res.send({message:true,
+                   joueur:ticket._id})   
+
+    }
+    catch(error){
+        res.send(error.message)   
+    }
+    
+});
+//numero ganyons
 router.post('/numeroGanyon', async (req, res) => {
     var admin=  await adminSchema.findById(req.params.id)
    var tickets=[] //sont les ticket permanants
@@ -58,3 +77,4 @@ router.post('/numeroGanyon', async (req, res) => {
     }
     
 });
+module.exports = router;

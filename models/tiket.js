@@ -5,6 +5,8 @@ const  ticketSchema  = new mongoose.Schema({
    numero:Number,
    condition:[],
    solde:Number,
+   soldeMax:Number,
+   SoldeMin:Number,
    gagnion:Boolean,
    realTime:Boolean,
    valide:Boolean,
