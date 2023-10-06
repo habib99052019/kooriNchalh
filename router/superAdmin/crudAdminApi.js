@@ -18,7 +18,9 @@ const jwt=require('jsonwebtoken');
 // func()
 console.log("declarer super admin")
 router.get('/', async (req, res) => {
+  
     var admins = await adminSchema.find()
+    
         res.send(admins)
 })
 router.get('/:id', async (req, res) => {

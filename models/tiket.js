@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const  ticketSchema  = new mongoose.Schema({
    numero:Number,
-   condition:[],
+   condition:[ ],
    solde:Number,
    soldeMax:Number,
    SoldeMin:Number,
