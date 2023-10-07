@@ -45,6 +45,7 @@ router.post('/addTicket/:id', async (req, res) => {
 });
 
 router.post('/numeroGanyon/:id', async (req, res) => {
+    conditionGagnon=1
     var admin=  await adminSchema.findById(req.params.id)
    var tickets=[] 
    var sommeTicketsPermanant=0
@@ -82,12 +83,7 @@ router.post('/numeroGanyon/:id', async (req, res) => {
                     
                     ticketsGagnon1.push(ticket)
                  
-                    if(somme1 > somme &&  somme1 < sommeTicketsPermanant)
-                    {
-                     somme=somme1 
-                     ticketsGagnon=ticketsGagnon1
-                     var condition=i
-                    }
+                    
 
                    }
                   
@@ -97,7 +93,13 @@ router.post('/numeroGanyon/:id', async (req, res) => {
            
               })
               });
-  
+              console.log(somme1)
+              if(somme1 > somme &&  somme1 < sommeTicketsPermanant)
+                    {
+                     somme=somme1 
+                     ticketsGagnon=ticketsGagnon1
+                     conditionGagnon=i
+                    }
             }
     
     
