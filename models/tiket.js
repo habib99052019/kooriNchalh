@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const  ticketSchema  = new mongoose.Schema({
    numero:Number,
-   condition:[ ],
+   condition:[],
    solde:Number,
    soldeMax:Number,
    SoldeMin:Number,
@@ -12,6 +12,6 @@ const  ticketSchema  = new mongoose.Schema({
    valide:Boolean,
    joueur:{ type: Schema.Types.ObjectId, ref:'joueurSchema'}
  
-    
+      
 });
 module.exports=mongoose.model('ticketSchema',ticketSchema);
