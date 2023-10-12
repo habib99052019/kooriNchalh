@@ -7,84 +7,119 @@ const ticketSchema=require('./../../models/tiket')
 const bcrypt=require('bcrypt');
 const jwt=require('jsonwebtoken');
 var cron = require('node-cron');
-var  test=true
+var  test=false
 // //add ticket
- async function func(){
-     var tickets = await ticketSchema.find()
-      var joueurs=await joueurSchema.find()
-     for (let i = 0; i < tickets.length; i++) {
+//  async function func(){
+//      var tickets = await ticketSchema.find()
+//       var admins=await adminSchema.findById("6522b1c69e7bcde5b852d14e").populate("tickets")
+//       console.log(admins.tickets)
+//     //  for (let i = 0; i < tickets.length; i++) {
         
-        await ticketSchema.deleteOne({ _id:tickets[i]._id })
+//     //     await ticketSchema.deleteOne({ _id:tickets[i]._id })
        
-     }
-     for (let i = 1; i < joueurs.length; i++) 
-     {
-        joueurs[i].tikets=[]
-        await joueurs[i].save()
-             }
-// //              var tickets1 = await ticketSchema.find()
-// //              var joueurs1 = await joueurSchema.find(); 
-//             //  console.log(tickets1,"12")
-//     //   console.log(tickets1)
-// //     // try{
-// //     //     var obj  = {
-// //     //         joueur:{
-// //     //         id: "651ee759305ce08dada296b3",
-// //     //         solde: 125
-// //     //             } ,
+//     //  }
+//     //  for (let i = 1; i < joueurs.length; i++) 
+//     //  {
+//     //     joueurs[i].tikets=[]
+//     //     await joueurs[i].save()
+//     //          }
+// // //              var tickets1 = await ticketSchema.find()
+// // //              var joueurs1 = await joueurSchema.find(); 
+// //             //  console.log(tickets1,"12")
+// //     //   console.log(tickets1)
+// // //     // try{
+// // //     //     var obj  = {
+// // //     //         joueur:{
+// // //     //         id: "651ee759305ce08dada296b3",
+// // //     //         solde: 125
+// // //     //             } ,
         
-// //     //         ticket:{  
-// //     //              numero:123589,
-// //     //              condition:[{
-// //     //             condition_id: 'TLyoF12', 
-// //     //         condition: [20,19],
-// //     //          soldeJouer: 0.5, 
-// //     //         soldeGagner: 18, 
-// //     //         coefficient: 36 
-// //     //                        }],
-// //     //         solde:50,
-// //     //         soldeMax:3,
-// //     //         SoldeMin:0,
-// //     //         gagnion:false,
-// //     //         realTime:true,
-// //     //         valide:false,
-// //     //         joueur:"651ee759305ce08dada296b3"}
-// //     //     }
-// //     //     var ticket =  await  ticketSchema.create(obj.ticket)
+// // //     //         ticket:{  
+// // //     //              numero:123589,
+// // //     //              condition:[{
+// // //     //             condition_id: 'TLyoF12', 
+// // //     //         condition: [20,19],
+// // //     //          soldeJouer: 0.5, 
+// // //     //         soldeGagner: 18, 
+// // //     //         coefficient: 36 
+// // //     //                        }],
+// // //     //         solde:50,
+// // //     //         soldeMax:3,
+// // //     //         SoldeMin:0,
+// // //     //         gagnion:false,
+// // //     //         realTime:true,
+// // //     //         valide:false,
+// // //     //         joueur:"651ee759305ce08dada296b3"}
+// // //     //     }
+// // //     //     var ticket =  await  ticketSchema.create(obj.ticket)
         
     
        
         
-// //     //     await joueurSchema.findByIdAndUpdate({ _id:obj.joueur.id}, { $push: { tikets: ticket._id } })
-// //     //    var joueur = await joueurSchema.findByIdAndUpdate(obj.joueur.id,obj.joueur, { new: true })
-// //     //     console.log({message:true,
-// //     //               ticket:ticket,
-// //     //               solde:joueur.solde
-// //     //             })   
+// // //     //     await joueurSchema.findByIdAndUpdate({ _id:obj.joueur.id}, { $push: { tikets: ticket._id } })
+// // //     //    var joueur = await joueurSchema.findByIdAndUpdate(obj.joueur.id,obj.joueur, { new: true })
+// // //     //     console.log({message:true,
+// // //     //               ticket:ticket,
+// // //     //               solde:joueur.solde
+// // //     //             })   
     
-// //     // }
-// //     // catch(error){
-// //     //     console.log(error.message)   
-// //     // }
-// var joueurs = await joueurSchema.find();
-// for (let i = 0; i < joueurs.length; i++) 
-// {
-//    joueurs[i].tikets=[]
-//    await joueurs[i].save()
-//         }
-//     var tickets = await ticketSchema.find()
+// // //     // }
+// // //     // catch(error){
+// // //     //     console.log(error.message)   
+// // //     // }
+// // var joueurs = await joueurSchema.find();
+// // for (let i = 0; i < joueurs.length; i++) 
+// // {
+// //    joueurs[i].tikets=[]
+// //    await joueurs[i].save()
+// //         }
+// //     var tickets = await ticketSchema.find()
     
-//         console.log(tickets,"tickets")
-var joueurs1 = await joueurSchema.find();
-console.log(joueurs1,"ee")  
-   }
-func()
+// //         console.log(tickets,"tickets")
+// // var joueurs1 = await joueurSchema.find();
+// console.log(admins,"ee")  
+//    }
+// func()
+// temps=90
+
+  function TimePause() {
+    test=true
+    console.log( test)
+  }
+  
+function calcul(tab){
+    tabSomme=[]
+    for (let d =1 ; d < 37; d++) {
+        somme=0
+        for (let h =0;  h < tab.ticketReaTime.length; h++) {
+           var ticket = tab.ticketReaTime[h]
+            for (let k =0;  k < ticket.condition.length; k++) {
+                var test2 = ticket.condition[k].condition.some(ele=> ele == d)
+                    if(test2==true ){
+                        somme =somme+condition[m].soldeGagner
+                       
+                    }        
+            }       
+        }
+     tabSomme.push(somme)
+    }
+    
+}
 router.get('/', async (req, res) => {
    
     var tickets = await ticketSchema.find()
 
     
         res.send(tickets)
+})
+router.get('/temp', async (req, res) => {
+  if( test==true){
+    res.send({message:true,
+      temp:temps})
+  }
+   else{
+    res.send({message:false})
+   }
 })
 router.get('/:id', async (req, res) => {
     var ticket=  await ticketSchema.findById(req.params.id)
@@ -119,114 +154,223 @@ router.post('/numeroGanyon/:id', async (req, res) => {
   
     
 });
-// cron.schedule('*/20 * * * * *', async () => {
-//     console.log('running every minute 1, 2, 4 and 5');
-//     ticketGlobale=[]
-//    test=false
-//    console.log(test)
-
+cron.schedule('*/70 * * * * *', async () => {
+  temps=40
+  test=true
+  function diminuerTemps() {
    
-    
- 
- 
-//         var admins=  await adminSchema.find().populate('Listejoueurs')
-//         //console.log(admins,1)
-//                   var j=0
-//     await admins.forEach( async (admin) => {
-//             // console.log(admin.Listejoueurs,12)
-            
-//             var ticketsRealTime=[] 
-//             var sommeTicketsPermanant=0
-         
-//             var somme =0
-//             var ticketsGagnon=[]
-//            var conditionGagnon=1
-//            Listejoueurs=admin.Listejoueurs
-//         //    console.log( Listejoueurs,'listJoueur')
-//         //    j=j+1
-//         //    console.log( j,'nombre de listes')
-//         for (let i = 0; i < Listejoueurs.length; i++) {
-//             // console.log("habib")
-//            // console.log(Listejoueurs[i].tikets ,"15")
-//             Listejoueurs[i].tikets.forEach( async (ticket_id) => {
-//                 // console.log(ticket_id,"id tickets")
-//                var ticket= await ticketSchema.findOne({_id:ticket_id})
+    temps=temps -1
+    console.log(temps)
+    console.log(test,'real' )
+   
+  }
+  let intervalID = setInterval(diminuerTemps, 1000)
+    console.log('chaque 30 seconde');
+    ticketGlobale=[]
+   
+   console.log(test,'one')
+   console.log(temps,"time")
+   tabSomme=[]
+        var admins=  await adminSchema.find().populate('tickets')
+       console.log(admins,'ronaldo' )
+        var long = admins.length
+      
+        
+        setTimeout(async function  excution() {
+          test=false
+          console.log(temps,'twoo')
+            for (let i = 0; i < long; i++){  
+                // console.log(1)
+                var tab= await admins[i].tickets.filter((ele) =>ele.realTime==true)
+           
+                if(tab.length >0){
+              var objetTicketRealTime={
+                admin:admins[i]._id,
+                ticketReaTime: tab,
+             soldeTicket:tab.map(item => item.solde).reduce((prev, curr) => prev + curr, 0),
+             tabGagnion:[],
+              condition:0
+
+              }
+              // await  ticketGlobale.push(objetTicketRealTime)
+              for (let d =1 ; d < 37; d++) {
+                somme=0  
                
-               
-//             //    console.log(ticket.realTime ,'boolean')
-//                 if  ( ticket.realTime  ===  true){
-                    
-//                     await  ticketsRealTime.push(ticket)
-                          
-                    
-                  
-                  
-//         //   console.log(ticketsRealTime ,'rrr')
-//         //   sommeTicketsPermanant=sommeTicketsPermanant+ticket.solde
+                 
+                
+                  var ticketsRelaTimes = objetTicketRealTime.ticketReaTime
+                 
+                  for (let h =0;  h < ticketsRelaTimes.length; h++) {
+                     var ticket = ticketsRelaTimes[h]
+                // console.log(ticket.condition,"length")
+      
+                      for (let x =0 ;  x < ticket.condition.length; x++) {
+                    // console.log(ticket.condition[x].condition,'w' ,x)
+                         var condition=ticket.condition[x]
+                            
+                            var  test2 =ticket.condition[x].condition.some(ele=> ele == d)
+                                //  console.log(d ,test2)
+                              if(test2==true ){
+                                  somme =somme+ticket.condition[x].soldeGagner
+                                 
+                           }        
+                      }       
+                  }
+                 
+                  objetTicketRealTime.tabGagnion.push({somme:somme,
+                                                          condition:d})
+              }
+              console.log(admins[i].prencentage ,'prencentage')
+              var prencentage =objetTicketRealTime.soldeTicket - (objetTicketRealTime.soldeTicket * (admins[i].prencentage / 100));
+               console.log(objetTicketRealTime.tabGagnion.sort((a, b) => b.somme - a.somme),'kk')
+              admins[i].resultatRoulette= objetTicketRealTime.tabGagnion.sort((a, b) =>  b.somme-a.somme).find(ele=>ele.somme <= objetTicketRealTime.soldeTicket).condition;
+              objetTicketRealTime.condition= objetTicketRealTime.tabGagnion.sort((a, b) =>  b.somme-a.somme).find(ele=>ele.somme <= objetTicketRealTime.soldeTicket).condition;
+             await admins[i].save()             
+             console.log( objetTicketRealTime.tabGagnion.sort((a, b) =>  b.somme-a.somme).find(ele=>ele.somme <= objetTicketRealTime.soldeTicket),'kk')
+              ticketGlobale.push(objetTicketRealTime)
+            }   
+           
           
-//         //  ticket.realTime=false
-//         //   await ticket.save()
+           
+            }
+           console.log(ticketGlobale,"bari")
+           if(ticketGlobale.length>0){
+            for (let h =0;  h < ticketGlobale.length; h++) {
+              var ticketsRelaTimes = ticketGlobale[h].ticketReaTime
+              console.log(ticketGlobale[1],"era",238)
+           console.log(ticketGlobale[1].ticketReaTime,"er",239)   
+              for (let k =0;  k < ticketsRelaTimes.length; k++) {
+                
+                var ticket=  await ticketSchema.findById(ticketsRelaTimes[k]._id)
+               
+          
+                ticket.realTime= false
+                await ticket.save()
+                 for (let x =0 ;  x < ticket.condition.length; x++) {
+               // console.log(ticket.condition[x].condition,'w' ,x)
+                    var condition=ticket.condition[x]
+                       
+                       var  test2 =ticket.condition[x].condition.some(ele=> ele ==ticketGlobale[h].condition )
+                           //  console.log(d ,test2)
+                         if(test2==true ){
+                          ticket.gagnion=true
+                          await ticket.save()
+                          var joueur=  await joueurSchema.findById(ticket.joueur)
+                            joueur.solde=joueur.solde + ticket.condition[x].soldeGagner
+                            await joueur.save()
+                            
+                      }        
+                 }       
+             }
+            }
+          }
+            clearInterval(intervalID );
+        //  console.log(ticketGlobale ,'rr&&')
+         //change Ticket
        
-//                }
-//                var obj={
-//                 admin:admin._id,
-//                 tiket:ticketsRealTime,
-//                    }
-                  
-//                console.log(obj ,'yy')
-//             })
          
-
-//         }
-//     //   const objet = {
-//     //           admin:admin._id,
-//     //           ticket:ticketsRealTime
-//     //                    }
-//     // await ticketGlobale.push(objet)
-//                 // console.log(ticketGlobale ,'objet')  
-
-//     //     for (let i =1 ; i < 37; i++) {
-//     //        somme1=0
-//     //        var ticketsGagnon1=[]
-//     //        tickets.forEach(async (ticket) => {
+         }, 40000);
+         
+        //  console.log(ticketGlobale ,'somme')
+      //   setTimeout(TimePause, 5000);
+      //   console.log(test ,"registre")
+      //   console.log(temp)
+      //   console.log( ticketGlobale,"taab")
+      //  calcul(ticketGlobale[3])
+        // for (let d =1 ; d < 37; d++) {
+        //       somme=0
+        //     for (let h =0;  h <objetTicketRealTime.ticketReaTime.length; h++) {
+        //       var real=objetTicketRealTime.ticketReaTime[h]
+        //      console.log(real.condition ,'condition')
+        //       var condition=real.condition
+              
+        //       for (let m =0 ;  m<condition.length; m++){
+                
+        //             var test2 = condition[m].condition.some(ele=> ele == d)
+        //             if(test2==true ){
+        //                 somme =somme+condition[m]. soldeGagner
+                       
+        //             }
+        //       }
+        //     }
+        //     tabSomme.push({
+        //         constion:d,
+        //         somme:somme
+        //     })
             
-//     //          await   ticket.condition.forEach(async (condition) => {
+        //   //   if(somme1 > somme &&  somme1 < sommeTicketsPermanant)
+        //   //   {
+        //   //    somme=somme1 
+        //   //    ticketsGagnon=ticketsGagnon1
+        //   //    conditionGagnon=i
+        //   //     admin.resultatRoulette=i
+        //   //     await admin.save()
+        //   //   } 
+        //   }
+       // console.log( tabSomme ,"somme")
+              
+    // await tickets.forEach( async (admin) => {
+    //         // console.log(admin.Listejoueurs,12)
+            
+    //         var ticketsRealTime=[] 
+    //         var sommeTicketsPermanant=0
+         
+    //         var somme =0
+    //         var ticketsGagnon=[]
+    //        var conditionGagnon=1
+    //        Listejoueurs=admin.Listejoueurs
+    //     //    console.log( Listejoueurs,'listJoueur')
+    //     //    j=j+1
+    //     //    console.log( j,'nombre de listes')
+       
+    // //   const objet = {
+    // //           admin:admin._id,
+    // //           ticket:ticketsRealTime
+    // //                    }
+    // // await ticketGlobale.push(objet)
+    //             // console.log(ticketGlobale ,'objet')  
+
+    // //     for (let i =1 ; i < 37; i++) {
+    // //        somme1=0
+    // //        var ticketsGagnon1=[]
+    // //        tickets.forEach(async (ticket) => {
+            
+    // //          await   ticket.condition.forEach(async (condition) => {
              
-//     // var test = condition.condition.some((element) => element == i);
+    // // var test = condition.condition.some((element) => element == i);
   
-//     //                if(test==true){
-//     //                 somme1=somme1+ condition.soldeGagner
+    // //                if(test==true){
+    // //                 somme1=somme1+ condition.soldeGagner
                     
-//     //                 ticketsGagnon1.push(ticket)
+    // //                 ticketsGagnon1.push(ticket)
                  
                     
 
-//     //                }
+    // //                }
                   
 
-//     //                console.log(condition ,1)
-//     //                console.log(ticketsGagnon ,2)
+    // //                console.log(condition ,1)
+    // //                console.log(ticketsGagnon ,2)
            
-//     //           })
-//     //           });
-//     //           console.log(somme1)
-//     //           if(somme1 > somme &&  somme1 < sommeTicketsPermanant)
-//     //                 {
-//     //                  somme=somme1 
-//     //                  ticketsGagnon=ticketsGagnon1
-//     //                  conditionGagnon=i
-//     //                   admin.resultatRoulette=i
-//     //                   await admin.save()
-//     //                 }
-//     //         }
+    // //           })
+    // //           });
+    // //           console.log(somme1)
+    // //           if(somme1 > somme &&  somme1 < sommeTicketsPermanant)
+    // //                 {
+    // //                  somme=somme1 
+    // //                  ticketsGagnon=ticketsGagnon1
+    // //                  conditionGagnon=i
+    // //                   admin.resultatRoulette=i
+    // //                   await admin.save()
+    // //                 }
+    // //         }
     
     
     
     
-//             })  
+    //         })  
              
-//             console.log(ticketGlobale ,'finale')
-
+         
    
-//   });
+  });
 module.exports = router;
