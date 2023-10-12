@@ -171,12 +171,13 @@ cron.schedule('*/70 * * * * *', async () => {
    console.log(test,'one')
    console.log(temps,"time")
    tabSomme=[]
-        var admins=  await adminSchema.find().populate('tickets')
-       console.log(admins,'ronaldo' )
-        var long = admins.length
+       
       
         
         setTimeout(async function  excution() {
+          var admins=  await adminSchema.find().populate('tickets')
+          console.log(admins,'ronaldo' )
+           var long = admins.length
           test=false
           console.log(temps,'twoo')
             for (let i = 0; i < long; i++){  
@@ -237,8 +238,8 @@ cron.schedule('*/70 * * * * *', async () => {
            if(ticketGlobale.length>0){
             for (let h =0;  h < ticketGlobale.length; h++) {
               var ticketsRelaTimes = ticketGlobale[h].ticketReaTime
-              console.log(ticketGlobale[1],"era",238)
-           console.log(ticketGlobale[1].ticketReaTime,"er",239)   
+          //     console.log(ticketGlobale[1],"era",238)
+          //  console.log(ticketGlobale[1].ticketReaTime,"er",239)   
               for (let k =0;  k < ticketsRelaTimes.length; k++) {
                 
                 var ticket=  await ticketSchema.findById(ticketsRelaTimes[k]._id)
