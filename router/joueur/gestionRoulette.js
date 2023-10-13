@@ -8,6 +8,8 @@ const bcrypt=require('bcrypt');
 const jwt=require('jsonwebtoken');
 var cron = require('node-cron');
 var  test=false
+var testExcution=false
+var temps=0
 // //add ticket
 //  async function func(){
 //      var tickets = await ticketSchema.find()
@@ -113,13 +115,18 @@ router.get('/', async (req, res) => {
         res.send(tickets)
 })
 router.get('/temp', async (req, res) => {
-  if( test==true){
-    res.send({message:true,
-      temp:temps})
+  res.send({
+    temp:temps})
+})
+router.get('resultats/:id', async (req, res) => {
+if(testExcution==true){
+  var admin=  await adminSchema.findById(req.params.id)
+  res.send({message:true,
+    result:resultatRoulette})
+}
+  else{
+    res.send({message:false })
   }
-   else{
-    res.send({message:false})
-   }
 })
 router.get('/:id', async (req, res) => {
     var ticket=  await ticketSchema.findById(req.params.id)
@@ -154,12 +161,13 @@ router.post('/numeroGanyon/:id', async (req, res) => {
   
     
 });
-cron.schedule('*/70 * * * * *', async () => {
-  temps=40
+cron.schedule('* * * * *', async () => {
+  testExcution=false
+  temps=0
   test=true
   function diminuerTemps() {
    
-    temps=temps -1
+    temps=temps +1
     console.log(temps)
     console.log(test,'real' )
    
@@ -172,13 +180,16 @@ cron.schedule('*/70 * * * * *', async () => {
    console.log(temps,"time")
    tabSomme=[]
        
-      
+   setTimeout(async function  redemarerChrono1() {
+   console.log('hello')
+   }, 10000)
         
         setTimeout(async function  excution() {
+          test=false
           var admins=  await adminSchema.find().populate('tickets')
           console.log(admins,'ronaldo' )
            var long = admins.length
-          test=false
+          
           console.log(temps,'twoo')
             for (let i = 0; i < long; i++){  
                 // console.log(1)
@@ -265,12 +276,17 @@ cron.schedule('*/70 * * * * *', async () => {
              }
             }
           }
-            clearInterval(intervalID );
+          testExcution=true 
+          console.log(testExcution,"change")
         //  console.log(ticketGlobale ,'rr&&')
          //change Ticket
        
          
-         }, 40000);
+         }, 30000);
+         setTimeout(async function  redemarerChrono() {
+          clearInterval(intervalID );
+           temps=0
+         }, 60000)
          
         //  console.log(ticketGlobale ,'somme')
       //   setTimeout(TimePause, 5000);
