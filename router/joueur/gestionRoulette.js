@@ -163,7 +163,7 @@ router.post('/numeroGanyon/:id', async (req, res) => {
 });
 cron.schedule('* * * * *', async () => {
   testExcution=false
-  temps=0
+ 
   test=true
   function diminuerTemps() {
    
