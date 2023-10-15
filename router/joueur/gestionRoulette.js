@@ -10,6 +10,13 @@ var cron = require('node-cron');
 var  test=false
 var testExcution=false
 var temps=0
+setInterval( function affiche() {
+   
+ 
+  console.log(temps,'reel2')
+  
+ 
+}, 3000)
 // //add ticket
 //  async function func(){
 //      var tickets = await ticketSchema.find()
@@ -161,7 +168,7 @@ router.post('/numeroGanyon/:id', async (req, res) => {
   
     
 });
-cron.schedule('* * * * *', async () => {
+cron.schedule('*/2 * * * *', async () => {
   testExcution=false
  
   test=true
@@ -181,8 +188,9 @@ cron.schedule('* * * * *', async () => {
    tabSomme=[]
        
    setTimeout(async function  redemarerChrono1() {
-   console.log('hello')
-   }, 10000)
+    test=false
+   console.log(test,'helloTest')
+   },50000 )
         
         setTimeout(async function  excution() {
           test=false
@@ -282,11 +290,11 @@ cron.schedule('* * * * *', async () => {
          //change Ticket
        
          
-         }, 30000);
+         }, 90000);
          setTimeout(async function  redemarerChrono() {
           clearInterval(intervalID );
            temps=0
-         }, 60000)
+         }, 120000)
          
         //  console.log(ticketGlobale ,'somme')
       //   setTimeout(TimePause, 5000);
