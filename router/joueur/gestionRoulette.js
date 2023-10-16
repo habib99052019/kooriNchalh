@@ -202,7 +202,11 @@ cron.schedule('*/2 * * * *', async () => {
             for (let i = 0; i < long; i++){  
                 // console.log(1)
                 var tab= await admins[i].tickets.filter((ele) =>ele.realTime==true)
-           
+                     if(tab.length ==0) {
+                      admins[i].resultatRoulette=Math.floor(Math.random()*36)+1
+                      console.log(admins[i].resultatRoulette ,'rrruslt')
+                      await admins[i].save()
+                     }
                 if(tab.length >0){
               var objetTicketRealTime={
                 admin:admins[i]._id,
