@@ -247,8 +247,12 @@ cron.schedule('*/2 * * * *', async () => {
               console.log(admins[i].prencentage ,'prencentage')
               var prencentage =objetTicketRealTime.soldeTicket - (objetTicketRealTime.soldeTicket * (admins[i].prencentage / 100));
                console.log(objetTicketRealTime.tabGagnion.sort((a, b) => b.somme - a.somme),'kk')
-              admins[i].resultatRoulette= objetTicketRealTime.tabGagnion.sort((a, b) =>  b.somme-a.somme).find(ele=>ele.somme <= objetTicketRealTime.soldeTicket).condition;
-              objetTicketRealTime.condition= objetTicketRealTime.tabGagnion.sort((a, b) =>  b.somme-a.somme).find(ele=>ele.somme <= objetTicketRealTime.soldeTicket).condition;
+               var conditionRouletteGagner=objetTicketRealTime.tabGagnion.sort((a, b) =>  b.somme-a.somme).find(ele=>ele.somme <= prencentage)
+              admins[i].resultatRoulette= conditionRouletteGagner.condition;
+              objetTicketRealTime.condition= conditionRouletteGagner.condition;
+              admins[i].solde=admins[i].solde+(objetTicketRealTime.soldeTicket-conditionRouletteGagner.somme)
+              admins[i].historique=admins[i].historique.unshift(conditionRouletteGagner.condition)
+            
              await admins[i].save()             
              console.log( objetTicketRealTime.tabGagnion.sort((a, b) =>  b.somme-a.somme).find(ele=>ele.somme <= objetTicketRealTime.soldeTicket),'kk')
               ticketGlobale.push(objetTicketRealTime)
