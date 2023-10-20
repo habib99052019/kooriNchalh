@@ -200,6 +200,7 @@ cron.schedule('*/2 * * * *', async () => {
           
           console.log(temps,'twoo')
             for (let i = 0; i < long; i++){  
+              
                 // console.log(1)
                 var tab= await admins[i].tickets.filter((ele) =>ele.realTime==true)
                      if(tab.length ==0) {
@@ -251,9 +252,10 @@ cron.schedule('*/2 * * * *', async () => {
               admins[i].resultatRoulette= conditionRouletteGagner.condition;
               objetTicketRealTime.condition= conditionRouletteGagner.condition;
               admins[i].solde=admins[i].solde+(objetTicketRealTime.soldeTicket-conditionRouletteGagner.somme)
-              admins[i].historique=admins[i].historique.unshift(conditionRouletteGagner.condition)
+             
             
-             await admins[i].save()             
+             await admins[i].save()  
+             admins[i].historique= await admins[i].historique.push(admins[i].resultatRoulette)           
              console.log( objetTicketRealTime.tabGagnion.sort((a, b) =>  b.somme-a.somme).find(ele=>ele.somme <= objetTicketRealTime.soldeTicket),'kk')
               ticketGlobale.push(objetTicketRealTime)
             }   
