@@ -205,6 +205,7 @@ cron.schedule('*/2 * * * *', async () => {
                 var tab= await admins[i].tickets.filter((ele) =>ele.realTime==true)
                      if(tab.length ==0) {
                       admins[i].resultatRoulette=Math.floor(Math.random()*36)+1
+                      admins[i].historique= await admins[i].historique.push(admins[i].resultatRoulette)     
                       console.log(admins[i].resultatRoulette ,'rrruslt')
                       await admins[i].save()
                      }
@@ -253,9 +254,9 @@ cron.schedule('*/2 * * * *', async () => {
               objetTicketRealTime.condition= conditionRouletteGagner.condition;
               admins[i].solde=admins[i].solde+(objetTicketRealTime.soldeTicket-conditionRouletteGagner.somme)
              
-            
+              admins[i].historique= await admins[i].historique.push(admins[i].resultatRoulette)     
              await admins[i].save()  
-             admins[i].historique= await admins[i].historique.push(admins[i].resultatRoulette)           
+                 
              console.log( objetTicketRealTime.tabGagnion.sort((a, b) =>  b.somme-a.somme).find(ele=>ele.somme <= objetTicketRealTime.soldeTicket),'kk')
               ticketGlobale.push(objetTicketRealTime)
             }   
