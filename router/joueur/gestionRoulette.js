@@ -180,25 +180,25 @@ cron.schedule('*/2 * * * *', async () => {
    
   }
   let intervalID = setInterval(diminuerTemps, 1000)
-    console.log('chaque 30 seconde');
+   // console.log('chaque 30 seconde');
     ticketGlobale=[]
    
-   console.log(test,'one')
-   console.log(temps,"time")
+  // console.log(test,'one')
+   //console.log(temps,"time")
    tabSomme=[]
        
    setTimeout(async function  redemarerChrono1() {
     test=false
-   console.log(test,'helloTest')
+  // console.log(test,'helloTest')
    },50000 )
         
         setTimeout(async function  excution() {
           test=false
           var admins=  await adminSchema.find().populate('tickets')
-          console.log(admins,'ronaldo' )
+        //  console.log(admins,'ronaldo' )
            var long = admins.length
           
-          console.log(temps,'twoo')
+        //  console.log(temps,'twoo')
             for (let i = 0; i < long; i++){  
                 // console.log(1)
                 var tab= await admins[i].tickets.filter((ele) =>ele.realTime==true)
@@ -217,6 +217,7 @@ cron.schedule('*/2 * * * *', async () => {
 
               }
               // await  ticketGlobale.push(objetTicketRealTime)
+             // console.log(objetTicketRealTime,"aaaa")
               for (let d =1 ; d < 37; d++) {
                 somme=0  
                
@@ -226,6 +227,8 @@ cron.schedule('*/2 * * * *', async () => {
                  
                   for (let h =0;  h < ticketsRelaTimes.length; h++) {
                      var ticket = ticketsRelaTimes[h]
+                     ticket.realTime= false
+                     await ticket.save()
                 // console.log(ticket.condition,"length")
       
                       for (let x =0 ;  x < ticket.condition.length; x++) {
@@ -233,7 +236,8 @@ cron.schedule('*/2 * * * *', async () => {
                          var condition=ticket.condition[x]
                             
                             var  test2 =ticket.condition[x].condition.some(ele=> ele == d)
-                                //  console.log(d ,test2)
+                            console.log(ticket.condition[x].condition,'wwww' ,test2,d,objetTicketRealTime.admin,ticket._id)
+                                  console.log(d ,test2)
                               if(test2==true ){
                                   somme =somme+ticket.condition[x].soldeGagner
                                  
@@ -244,9 +248,9 @@ cron.schedule('*/2 * * * *', async () => {
                   objetTicketRealTime.tabGagnion.push({somme:somme,
                                                           condition:d})
               }
-              console.log(admins[i].prencentage ,'prencentage')
+            //  console.log(admins[i].prencentage ,'prencentage')
               var prencentage =objetTicketRealTime.soldeTicket - (objetTicketRealTime.soldeTicket * (admins[i].prencentage / 100));
-               console.log(objetTicketRealTime.tabGagnion.sort((a, b) => b.somme - a.somme),'kk')
+            //   console.log(objetTicketRealTime.tabGagnion.sort((a, b) => b.somme - a.somme),'kk')
                var conditionRouletteGagner=objetTicketRealTime.tabGagnion.sort((a, b) =>  b.somme-a.somme).find(ele=>ele.somme <= prencentage)
               admins[i].resultatRoulette= conditionRouletteGagner.condition;
               objetTicketRealTime.condition= conditionRouletteGagner.condition;
@@ -254,14 +258,14 @@ cron.schedule('*/2 * * * *', async () => {
               admins[i].historique.unshift(conditionRouletteGagner.condition)
             
              await admins[i].save()             
-             console.log( objetTicketRealTime.tabGagnion.sort((a, b) =>  b.somme-a.somme).find(ele=>ele.somme <= objetTicketRealTime.soldeTicket),'kk')
+           //  console.log( objetTicketRealTime.tabGagnion.sort((a, b) =>  b.somme-a.somme).find(ele=>ele.somme <= objetTicketRealTime.soldeTicket),'kk')
               ticketGlobale.push(objetTicketRealTime)
             }   
            
           
            
             }
-           console.log(ticketGlobale,"bari")
+         //  console.log(ticketGlobale,"bari")
            if(ticketGlobale.length>0){
             for (let h =0;  h < ticketGlobale.length; h++) {
               var ticketsRelaTimes = ticketGlobale[h].ticketReaTime
@@ -293,7 +297,7 @@ cron.schedule('*/2 * * * *', async () => {
             }
           }
           testExcution=true 
-          console.log(testExcution,"change")
+         // console.log(testExcution,"change")
         //  console.log(ticketGlobale ,'rr&&')
          //change Ticket
        
