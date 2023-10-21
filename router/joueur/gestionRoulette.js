@@ -202,11 +202,11 @@ cron.schedule('*/2 * * * *', async () => {
             for (let i = 0; i < long; i++){  
                 // console.log(1)
                 var tab= await admins[i].tickets.filter((ele) =>ele.realTime==true)
-                    //  if(tab.length ==0) {
-                    //   admins[i].resultatRoulette=Math.floor(Math.random()*36)+1
-                    //   console.log(admins[i].resultatRoulette ,'rrruslt')
-                    //   await admins[i].save()
-                    //  }
+                     if(tab.length ==0) {
+                      admins[i].resultatRoulette=Math.floor(Math.random()*36)+1
+                      console.log(admins[i].resultatRoulette ,'rrruslt')
+                      await admins[i].save()
+                     }
                 if(tab.length >0){
               var objetTicketRealTime={
                 admin:admins[i]._id,
@@ -256,8 +256,8 @@ cron.schedule('*/2 * * * *', async () => {
             
               objetTicketRealTime.condition= conditionRouletteGagner.condition;
 
-              //admins[i].solde=admins[i].solde+(objetTicketRealTime.soldeTicket-conditionRouletteGagner.somme)
-            // admins[i].hist.unshift(conditionRouletteGagner.condition)
+              admins[i].solde=admins[i].solde+(objetTicketRealTime.soldeTicket-conditionRouletteGagner.somme)
+            admins[i].hist.unshift(conditionRouletteGagner.condition)
             
              await admins[i].save()             
            //  console.log( objetTicketRealTime.tabGagnion.sort((a, b) =>  b.somme-a.somme).find(ele=>ele.somme <= objetTicketRealTime.soldeTicket),'kk')
