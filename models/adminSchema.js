@@ -12,6 +12,7 @@ const  adminSchema  = new mongoose.Schema({
     resultatRoulette:Number,
     role:String,
     historique:[],
+    hist:[],
     roulette:{ type: Schema.Types.ObjectId, ref:'roulette'},
     solde:Number,
     prencentage:Number,
