@@ -203,8 +203,10 @@ cron.schedule('*/2 * * * *', async () => {
                 // console.log(1)
                 var tab= await admins[i].tickets.filter((ele) =>ele.realTime==true)
                      if(tab.length ==0) {
-                      admins[i].resultatRoulette=Math.floor(Math.random()*36)+1
+                      var val=Math.floor(Math.random()*36)+1
+                      admins[i].resultatRoulette=val
                       console.log(admins[i].resultatRoulette ,'rrruslt')
+                      admins[i].hist.unshift(val)
                       await admins[i].save()
                      }
                 if(tab.length >0){
