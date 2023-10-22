@@ -302,7 +302,7 @@ cron.schedule('*/2 * * * *', async () => {
                           await ticket.save()
                           var joueur=  await joueurSchema.findById(ticket.joueur)
                             joueur.solde=joueur.solde + ticket.condition[x].soldeGagner
-                        //    tabJoueurGan.push(joueur.pseudoName)
+                           tabJoueurGan.push(joueur.pseudoName)
                             await joueur.save()
                             
                       }        
