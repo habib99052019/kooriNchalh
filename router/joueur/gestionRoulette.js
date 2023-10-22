@@ -124,7 +124,8 @@ router.get('/', async (req, res) => {
 })
 router.get('/temp', async (req, res) => {
   res.send({
-    temp:temps})
+    temp:temps,
+  tab:tabJoueurGan})
 })
 router.get('resultats/:id', async (req, res) => {
 if(testExcution==true){
