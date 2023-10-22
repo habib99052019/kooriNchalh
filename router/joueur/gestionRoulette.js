@@ -10,7 +10,7 @@ var cron = require('node-cron');
 var  test=false
 var testExcution=false
 var temps=0
-var tabJoueurGan=[]
+let tabJoueurGan=[]
 setInterval( function affiche() {
    
  
@@ -18,6 +18,9 @@ setInterval( function affiche() {
   
  
 }, 3000)
+// async function func(){
+//  console.log(tabJoueurGan,'nnn' )
+// }
 // //add ticket
 //  async function func(){
 //      var tickets = await ticketSchema.find()
@@ -89,7 +92,7 @@ setInterval( function affiche() {
 // // var joueurs1 = await joueurSchema.find();
 // console.log(admins,"ee")  
 //    }
-// func()
+//  func()
 // temps=90
 
   function TimePause() {
@@ -164,15 +167,15 @@ router.post('/addTicket/:id', async (req, res) => {
     }
     
 });
-
+router.get('/Tj', async (req, res) => {
+  res.send({
+    tab:tabJoueurGan})
+})
 router.post('/numeroGanyon/:id', async (req, res) => {
   
     
 });
-router.get('/joueurGani', async (req, res) => {
-     
-    res.send(tabJoueurGan)
-});
+
 cron.schedule('*/2 * * * *', async () => {
   tabJoueurGan=[]
   testExcution=false
@@ -304,9 +307,9 @@ cron.schedule('*/2 * * * *', async () => {
                           await ticket.save()
                           var joueur=  await joueurSchema.findById(ticket.joueur)
                             joueur.solde=joueur.solde + ticket.condition[x].soldeGagner
-                            tabJoueurGan.push(joueur.pseudoName)
+                            tabJoueurGan.push(joueur.login)
                             await joueur.save()
-                            
+                          
                       }        
                  }       
              }
