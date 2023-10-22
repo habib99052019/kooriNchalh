@@ -220,7 +220,7 @@ cron.schedule('*/2 * * * *', async () => {
               }
               // await  ticketGlobale.push(objetTicketRealTime)
              // console.log(objetTicketRealTime,"aaaa")
-              for (let d =1 ; d < 37; d++) {
+              for (let d =0 ; d < 37; d++) {
                 somme=0  
                
                  
