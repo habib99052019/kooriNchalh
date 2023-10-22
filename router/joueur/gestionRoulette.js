@@ -169,7 +169,7 @@ router.post('/numeroGanyon/:id', async (req, res) => {
   
     
 });
-router.post('/joueurGani', async (req, res) => {
+router.get('/joueurGani', async (req, res) => {
      
     res.send(tabJoueurGan)
 });
