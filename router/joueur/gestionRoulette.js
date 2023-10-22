@@ -223,7 +223,7 @@ cron.schedule('*/2 * * * *', async () => {
               for (let d =0 ; d < 37; d++) {
                 somme=0  
                
-                 
+                ////bbb 
                 
                   var ticketsRelaTimes = objetTicketRealTime.ticketReaTime
                  
