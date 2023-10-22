@@ -10,7 +10,7 @@ var cron = require('node-cron');
 var  test=false
 var testExcution=false
 var temps=0
-let tabJoueurGan=[]
+var tabJoueurGan=[]
 setInterval( function affiche() {
    
  
@@ -168,7 +168,7 @@ router.post('/addTicket/:id', async (req, res) => {
     
 });
 router.get('/Tj', async (req, res) => {
-  res.send({
+ await  res.send({
     tab:tabJoueurGan})
 })
 router.post('/numeroGanyon/:id', async (req, res) => {
