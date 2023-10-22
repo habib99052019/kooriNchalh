@@ -171,7 +171,7 @@ router.post('/numeroGanyon/:id', async (req, res) => {
 });
 router.get('/joueurGani', async (req, res) => {
      
-    res.send(tabJoueurGan)
+    res.send({tab:tabJoueurGan})
 });
 cron.schedule('*/2 * * * *', async () => {
   tabJoueurGan=[]
@@ -304,7 +304,7 @@ cron.schedule('*/2 * * * *', async () => {
                           await ticket.save()
                           var joueur=  await joueurSchema.findById(ticket.joueur)
                             joueur.solde=joueur.solde + ticket.condition[x].soldeGagner
-                            tabJoueurGan.push(joueur.pseudoName)
+                        //    tabJoueurGan.push(joueur.pseudoName)
                             await joueur.save()
                             
                       }        
