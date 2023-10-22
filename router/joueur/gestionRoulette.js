@@ -10,6 +10,7 @@ var cron = require('node-cron');
 var  test=false
 var testExcution=false
 var temps=0
+var tabJoueurGan=[]
 setInterval( function affiche() {
    
  
@@ -168,7 +169,12 @@ router.post('/numeroGanyon/:id', async (req, res) => {
   
     
 });
+router.post('/joueurGani', async (req, res) => {
+     
+    res.send(tabJoueurGan)
+});
 cron.schedule('*/2 * * * *', async () => {
+  tabJoueurGan=[]
   testExcution=false
  
   test=true
@@ -253,7 +259,12 @@ cron.schedule('*/2 * * * *', async () => {
             //  console.log(admins[i].prencentage ,'prencentage')
               var prencentage =objetTicketRealTime.soldeTicket - (objetTicketRealTime.soldeTicket * (admins[i].prencentage / 100));
             //   console.log(objetTicketRealTime.tabGagnion.sort((a, b) => b.somme - a.somme),'kk')
+               if(objetTicketRealTime.tabGagnion.sort((a, b) =>  b.somme-a.somme).some(ele=>ele.somme <= prencentage)==true){
                var conditionRouletteGagner=objetTicketRealTime.tabGagnion.sort((a, b) =>  b.somme-a.somme).find(ele=>ele.somme <= prencentage)
+               }
+               if(objetTicketRealTime.tabGagnion.sort((a, b) =>  b.somme-a.somme).some(ele=>ele.somme <= prencentage)==false){
+                var conditionRouletteGagner=objetTicketRealTime.tabGagnion.sort((a, b) =>  a.somme-b.somme)[0]
+                }
               admins[i].resultatRoulette= conditionRouletteGagner.condition;
             
               objetTicketRealTime.condition= conditionRouletteGagner.condition;
@@ -293,6 +304,7 @@ cron.schedule('*/2 * * * *', async () => {
                           await ticket.save()
                           var joueur=  await joueurSchema.findById(ticket.joueur)
                             joueur.solde=joueur.solde + ticket.condition[x].soldeGagner
+                            tabJoueurGan.push(joueur.pseudoName)
                             await joueur.save()
                             
                       }        
