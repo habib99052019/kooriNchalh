@@ -425,6 +425,9 @@ cron.schedule('*/2 * * * *', async () => {
   });
   router.get('/joueurGani', async (req, res) => {
      
-    res.send({yy:2})
+    var tickets = await ticketSchema.find()
+
+    res.send({yy:2,
+             a:tickets })
 });
 module.exports = router;
