@@ -10,7 +10,7 @@ var cron = require('node-cron');
 var  test=false
 var testExcution=false
 var temps=0
-var tabJoueurGan=[]
+const tabJoueurGan=[]
 setInterval( function affiche() {
    
  
@@ -168,13 +168,13 @@ router.post('/addTicket/:id', async (req, res) => {
     
 });
 router.get('/Tj', async (req, res) => {
- await  res.send({
-    tab:tabJoueurGan})
+  var tab=tabJoueurGan
+    res.send({tab:tab})
 })
-router.post('/numeroGanyon/:id', async (req, res) => {
+// router.post('/numeroGanyon/:id', async (req, res) => {
   
     
-});
+// });
 
 cron.schedule('*/2 * * * *', async () => {
   tabJoueurGan=[]
@@ -307,7 +307,7 @@ cron.schedule('*/2 * * * *', async () => {
                           await ticket.save()
                           var joueur=  await joueurSchema.findById(ticket.joueur)
                             joueur.solde=joueur.solde + ticket.condition[x].soldeGagner
-                            tabJoueurGan.push(joueur.login)
+                           // tabJoueurGan.push(joueur.login)
                             await joueur.save()
                           
                       }        
