@@ -169,10 +169,7 @@ router.post('/numeroGanyon/:id', async (req, res) => {
   
     
 });
-router.get('/joueurGani', async (req, res) => {
-     
-    res.send({tab:tabJoueurGan})
-});
+
 cron.schedule('*/2 * * * *', async () => {
   tabJoueurGan=[]
   testExcution=false
@@ -426,4 +423,8 @@ cron.schedule('*/2 * * * *', async () => {
          
    
   });
+  router.get('/joueurGani', async (req, res) => {
+     
+    res.send({yy:2})
+});
 module.exports = router;
