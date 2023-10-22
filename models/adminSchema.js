@@ -19,10 +19,11 @@ const  adminSchema  = new mongoose.Schema({
     Listejoueurs: [{ type: Schema.Types.ObjectId, ref:'joueurSchema'}],
     tickets: [{ type: Schema.Types.ObjectId, ref:'ticketSchema'}], 
     text1:    {title:String,
-                value:Strin},
+                value:String},
     text2:    {title:String,
-               value:Strin},
+               value:String},
     text3:    {title:String,
-              value:Strin}
+              value:String}
 });
+//aaaaa
 module.exports=mongoose.model('adminSchema',adminSchema);
