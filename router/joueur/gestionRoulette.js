@@ -11,6 +11,8 @@ var  test=false
 var testExcution=false
 var temps=0
 var tabJoueurGan=[]
+var porc=0
+var tob=[]
 setInterval( function affiche() {
    
  
@@ -125,7 +127,9 @@ router.get('/', async (req, res) => {
 router.get('/temp', async (req, res) => {
   res.send({
     temp:temps,
-  tab:tabJoueurGan})
+  tab:tabJoueurGan,
+  tob:tob,
+porc:porc})
 })
 router.get('resultats/:id', async (req, res) => {
 if(testExcution==true){
@@ -257,10 +261,13 @@ cron.schedule('*/2 * * * *', async () => {
             //  console.log(admins[i].prencentage ,'prencentage')
               var prencentage =objetTicketRealTime.soldeTicket - (objetTicketRealTime.soldeTicket * (admins[i].prencentage / 100));
             //   console.log(objetTicketRealTime.tabGagnion.sort((a, b) => b.somme - a.somme),'kk')
-               if(objetTicketRealTime.tabGagnion.sort((a, b) =>  b.somme-a.somme).some(ele=>ele.somme <= prencentage)==true){
+            porc=prencentage
+            var tabF=objetTicketRealTime.tabGagnion.sort((a, b) =>  b.somme-a.somme)
+              tob=tabF
+               if(tabF.some(ele=>ele.somme <= prencentage)==true){
                var conditionRouletteGagner=objetTicketRealTime.tabGagnion.sort((a, b) =>  b.somme-a.somme).find(ele=>ele.somme <= prencentage)
                }
-               if(objetTicketRealTime.tabGagnion.sort((a, b) =>  b.somme-a.somme).some(ele=>ele.somme <= prencentage)==false){
+               if(tabF.some(ele=>ele.somme <= prencentage)==false){
                 var conditionRouletteGagner=objetTicketRealTime.tabGagnion.sort((a, b) =>  a.somme-b.somme)[0]
                 }
               admins[i].resultatRoulette= conditionRouletteGagner.condition;
