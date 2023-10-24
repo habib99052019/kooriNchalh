@@ -266,7 +266,7 @@ cron.schedule('*/2 * * * *', async () => {
            
             var tabF=objetTicketRealTime.tabGagnion.sort((a, b) =>  b.somme-a.somme)
             tob=tabF
-                 proc=prencentage 
+                 proc=admins[i].prencentage 
               if(tabF.some(ele=>ele.somme <= prencentage)==true){
                
                  
