@@ -264,8 +264,7 @@ cron.schedule('*/2 * * * *', async () => {
             porc=prencentage
             var tabF=objetTicketRealTime.tabGagnion.sort((a, b) =>  b.somme-a.somme)
               tob=tabF
-              
-               if(tabF.some(ele=>ele.somme <= prencentage)==true){
+              if(tabF.some(ele=>ele.somme <= prencentage)==true){
                 var tabFiltre = objetTicketRealTime.tabGagnion.sort((a, b) =>  b.somme-a.somme).filtre(ele=>ele.somme <= prencentage)
                 value1=Math.floor(Math.random()*tabFiltre.length)
                var conditionRouletteGagner=tabFiltre[value1]
@@ -273,14 +272,6 @@ cron.schedule('*/2 * * * *', async () => {
                if(tabF.some(ele=>ele.somme <= prencentage)==false){
                 var conditionRouletteGagner=objetTicketRealTime.tabGagnion.sort((a, b) =>  a.somme-b.somme)[0]
                 }
-                var value2=Math.floor(Math.random()*37)
-                var tabLength=objetTicketRealTime.tabGagnion.filter(ele=>ele.somme == objetTicketRealTime.tabGagnion[value2].somme)
-                if(tabLength.length > 35){
-                  var value3=Math.floor(Math.random()*35)
-                  var  conditionRouletteGagner=tabLength[value3]
-                 
-                  }
-                  
               admins[i].resultatRoulette= conditionRouletteGagner.condition;
             
               objetTicketRealTime.condition= conditionRouletteGagner.condition;
@@ -289,7 +280,7 @@ cron.schedule('*/2 * * * *', async () => {
             admins[i].hist.unshift(conditionRouletteGagner.condition)
             
              await admins[i].save()             
-           ///  console.log( objetTicketRealTime.tabGagnion.sort((a, b) =>  b.somme-a.somme).find(ele=>ele.somme <= objetTicketRealTime.soldeTicket),'kk')
+           //  console.log( objetTicketRealTime.tabGagnion.sort((a, b) =>  b.somme-a.somme).find(ele=>ele.somme <= objetTicketRealTime.soldeTicket),'kk')
               ticketGlobale.push(objetTicketRealTime)
             }   
            
