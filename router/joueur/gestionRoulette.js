@@ -262,7 +262,7 @@ cron.schedule('*/2 * * * *', async () => {
               }
             //  console.log(admins[i].prencentage ,'prencentage')
               var prencentage =objetTicketRealTime.soldeTicket - (objetTicketRealTime.soldeTicket * (admins[i].prencentage / 100));
-            //   console.log(objetTicketRealTime.tabGagnion.sort((a, b) => b.somme - a.somme),'kk')
+          //  //   console.log(objetTicketRealTime.tabGagnion.sort((a, b) => b.somme - a.somme),'kk')
            
             var tabF=objetTicketRealTime.tabGagnion.sort((a, b) =>  b.somme-a.somme)
             tob=tabF
