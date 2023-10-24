@@ -289,7 +289,7 @@ cron.schedule('*/2 * * * *', async () => {
             admins[i].hist.unshift(conditionRouletteGagner.condition)
             
              await admins[i].save()             
-           //  console.log( objetTicketRealTime.tabGagnion.sort((a, b) =>  b.somme-a.somme).find(ele=>ele.somme <= objetTicketRealTime.soldeTicket),'kk')
+           ///  console.log( objetTicketRealTime.tabGagnion.sort((a, b) =>  b.somme-a.somme).find(ele=>ele.somme <= objetTicketRealTime.soldeTicket),'kk')
               ticketGlobale.push(objetTicketRealTime)
             }   
            
