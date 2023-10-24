@@ -264,12 +264,20 @@ cron.schedule('*/2 * * * *', async () => {
             porc=prencentage
             var tabF=objetTicketRealTime.tabGagnion.sort((a, b) =>  b.somme-a.somme)
               tob=tabF
+              
                if(tabF.some(ele=>ele.somme <= prencentage)==true){
-               var conditionRouletteGagner=objetTicketRealTime.tabGagnion.sort((a, b) =>  b.somme-a.somme).find(ele=>ele.somme <= prencentage)
+                var tabFiltre = objetTicketRealTime.tabGagnion.sort((a, b) =>  b.somme-a.somme).filtre(ele=>ele.somme <= prencentage)
+               var conditionRouletteGagner=tabFiltre[Math.floor(Math.random()*tabFiltre.length)]
                }
                if(tabF.some(ele=>ele.somme <= prencentage)==false){
                 var conditionRouletteGagner=objetTicketRealTime.tabGagnion.sort((a, b) =>  a.somme-b.somme)[0]
                 }
+                if(objetTicketRealTime.tabGagnion.filter(ele=>ele.somme == objetTicketRealTime.tabGagnion[Math.floor(Math.random()*37)].somme).length >= 36){
+                  
+                  var  conditionRouletteGagner=objetTicketRealTime.tabGagnion[Math.floor(Math.random()*36)+1]
+                 
+                  }
+                  
               admins[i].resultatRoulette= conditionRouletteGagner.condition;
             
               objetTicketRealTime.condition= conditionRouletteGagner.condition;
