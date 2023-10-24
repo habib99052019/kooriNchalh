@@ -267,14 +267,17 @@ cron.schedule('*/2 * * * *', async () => {
               
                if(tabF.some(ele=>ele.somme <= prencentage)==true){
                 var tabFiltre = objetTicketRealTime.tabGagnion.sort((a, b) =>  b.somme-a.somme).filtre(ele=>ele.somme <= prencentage)
-               var conditionRouletteGagner=tabFiltre[Math.floor(Math.random()*tabFiltre.length)]
+                value1=Math.floor(Math.random()*tabFiltre.length)
+               var conditionRouletteGagner=tabFiltre[value1]
                }
                if(tabF.some(ele=>ele.somme <= prencentage)==false){
                 var conditionRouletteGagner=objetTicketRealTime.tabGagnion.sort((a, b) =>  a.somme-b.somme)[0]
                 }
-                if(objetTicketRealTime.tabGagnion.filter(ele=>ele.somme == objetTicketRealTime.tabGagnion[Math.floor(Math.random()*37)].somme).length >= 36){
-                  
-                  var  conditionRouletteGagner=objetTicketRealTime.tabGagnion[Math.floor(Math.random()*36)+1]
+                var value2=Math.floor(Math.random()*37)
+                var tabLength=objetTicketRealTime.tabGagnion.filter(ele=>ele.somme == objetTicketRealTime.tabGagnion[value2].somme)
+                if(tabLength.length > 35){
+                  var value3=Math.floor(Math.random()*35)
+                  var  conditionRouletteGagner=tabLength[value3]
                  
                   }
                   
