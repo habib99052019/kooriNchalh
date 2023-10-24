@@ -261,15 +261,15 @@ cron.schedule('*/2 * * * *', async () => {
             //  console.log(admins[i].prencentage ,'prencentage')
               var prencentage =objetTicketRealTime.soldeTicket - (objetTicketRealTime.soldeTicket * (admins[i].prencentage / 100));
             //   console.log(objetTicketRealTime.tabGagnion.sort((a, b) => b.somme - a.somme),'kk')
-            porc=prencentage
+           
             var tabF=objetTicketRealTime.tabGagnion.sort((a, b) =>  b.somme-a.somme)
              
               if(tabF.some(ele=>ele.somme <= prencentage)==true){
-                
-                var tabFiltre = tabF.filtre(ele=>ele.somme <= prencentage)
-                tob=tabFiltre 
+                porc=1
+              
+                tob=  tabF.filtre(ele=>ele.somme <= prencentage)
                 value1=Math.floor(Math.random()*tabFiltre.length)
-               var conditionRouletteGagner=tabFiltre[value1]
+               var conditionRouletteGagner=tabF.filtre(ele=>ele.somme <= prencentage)[value1]
                }
                if(tabF.some(ele=>ele.somme <= prencentage)==false){
                 var conditionRouletteGagner=objetTicketRealTime.tabGagnion.sort((a, b) =>  a.somme-b.somme)[0]
