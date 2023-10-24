@@ -13,6 +13,8 @@ var temps=0
 var tabJoueurGan=[]
 var porc=0
 var tob=[]
+var solde1=0
+var tabf2=[]
 setInterval( function affiche() {
    
  
@@ -263,11 +265,12 @@ cron.schedule('*/2 * * * *', async () => {
             //   console.log(objetTicketRealTime.tabGagnion.sort((a, b) => b.somme - a.somme),'kk')
            
             var tabF=objetTicketRealTime.tabGagnion.sort((a, b) =>  b.somme-a.somme)
-             
+            tob=tabF
+                 proc=prencentage 
               if(tabF.some(ele=>ele.somme <= prencentage)==true){
-                porc=1
-              
-                tob=  tabF.filtre(ele=>ele.somme <= prencentage)
+               
+                 
+                tob= tabF.filtre(ele=>ele.somme <= prencentage)
                 value1=Math.floor(Math.random()*tabFiltre.length)
                var conditionRouletteGagner=tabF.filtre(ele=>ele.somme <= prencentage)[value1]
                }
