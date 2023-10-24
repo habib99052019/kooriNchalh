@@ -263,9 +263,11 @@ cron.schedule('*/2 * * * *', async () => {
             //   console.log(objetTicketRealTime.tabGagnion.sort((a, b) => b.somme - a.somme),'kk')
             porc=prencentage
             var tabF=objetTicketRealTime.tabGagnion.sort((a, b) =>  b.somme-a.somme)
-              tob=tabF
+             
               if(tabF.some(ele=>ele.somme <= prencentage)==true){
-                var tabFiltre = objetTicketRealTime.tabGagnion.sort((a, b) =>  b.somme-a.somme).filtre(ele=>ele.somme <= prencentage)
+                
+                var tabFiltre = tabF.filtre(ele=>ele.somme <= prencentage)
+                tob=tabFiltre 
                 value1=Math.floor(Math.random()*tabFiltre.length)
                var conditionRouletteGagner=tabFiltre[value1]
                }
