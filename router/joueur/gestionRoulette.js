@@ -338,7 +338,7 @@ cron.schedule('*/2 * * * *', async () => {
          //change Ticket
        
          
-         }, 50000);
+         }, 60000);
          setTimeout(async function  redemarerChrono() {
           clearInterval(intervalID );
            temps=0
