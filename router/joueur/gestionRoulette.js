@@ -264,13 +264,13 @@ cron.schedule('*/2 * * * *', async () => {
 
             //  console.log(admins[i].prencentage ,'prencentage')
           solde1=  objetTicketRealTime.soldeTicket
-          solde1=admins[i].prencentage
+         
            /// tob=objetTicketRealTime.tabGagnion.sort((a, b) =>  b.somme-a.somme)
               var prencentage =objetTicketRealTime.soldeTicket - (objetTicketRealTime.soldeTicket * (admins[i].prencentage / 100));
           //  //   console.log(objetTicketRealTime.tabGagnion.sort((a, b) => b.somme - a.somme),'kk')
-           
+          solde1=prencentage
             var tabF=objetTicketRealTime.tabGagnion.sort((a, b) =>  b.somme-a.somme)
-          
+            
                  
                  //
               if(tabF.some(ele=>ele.somme <= prencentage)==true){
