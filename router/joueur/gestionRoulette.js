@@ -271,15 +271,15 @@ cron.schedule('*/2 * * * *', async () => {
               
           var tabF=objetTicketRealTime.tabGagnion.sort((a, b) =>  b.somme-a.somme)
             
-                 console.log(tabF.filtre(ele=>ele.somme <= prencentage),"prt")
+                 console.log(tabF.filter(ele=>ele.somme <= prencentage),"prt")
                  //
-              if(tabF.some(ele=>ele.somme <= prencentage)==true){
+              if(tabF.some(ele=> ele.somme < prencentage)==true){
                
                  
-             //   tob= tabF.filtre(ele=>ele.somme <= prencentage)
+               var tabF2 = tabF.filter(ele=>ele.somme <= prencentage)
 
-                value1=Math.floor(Math.random()*tabF.filtre(ele=>ele.somme <= prencentage).length)
-               var conditionRouletteGagner=tabF.filtre(ele=>ele.somme <= prencentage)[value1]
+                value1=Math.floor(Math.random()*tabF2.length)
+               var conditionRouletteGagner=tabF2[value1]
 
                }
                if(tabF.some(ele=>ele.somme <= prencentage)==false){
@@ -338,7 +338,7 @@ cron.schedule('*/2 * * * *', async () => {
          //change Ticket
        
          
-         }, 60000);
+         },60000);
          setTimeout(async function  redemarerChrono() {
           clearInterval(intervalID );
            temps=0
