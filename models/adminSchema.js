@@ -18,12 +18,16 @@ const  adminSchema  = new mongoose.Schema({
     prencentage:Number,
     Listejoueurs: [{ type: Schema.Types.ObjectId, ref:'joueurSchema'}],
     tickets: [{ type: Schema.Types.ObjectId, ref:'ticketSchema'}], 
+    admins: [{ type: Schema.Types.ObjectId, ref:'adminSchema'}], 
     text1:    {title:String,
-                value:String},
+                value:String,
+                status:Boolean},
     text2:    {title:String,
-               value:String},
+               value:String,
+               status:Boolean},
     text3:    {title:String,
-              value:String}
+              value:String,
+               status:Boolean}
 });
 //aaaaa
 module.exports=mongoose.model('adminSchema',adminSchema);

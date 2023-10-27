@@ -178,7 +178,7 @@ router.post('/numeroGanyon/:id', async (req, res) => {
     
 });
 
-cron.schedule('*/2 * * * *', async () => {
+cron.schedule('*/3 * * * *', async () => {
   tabJoueurGan=[]
   testExcution=false
  
@@ -201,7 +201,7 @@ cron.schedule('*/2 * * * *', async () => {
    setTimeout(async function  redemarerChrono1() {
     test=false
   // console.log(test,'helloTest')
-   },50000 )
+   },140000 )
         
         setTimeout(async function  excution() {
           test=false
@@ -285,6 +285,10 @@ cron.schedule('*/2 * * * *', async () => {
                if(tabF.some(ele=>ele.somme <= prencentage)==false){
                 var conditionRouletteGagner=objetTicketRealTime.tabGagnion.sort((a, b) =>  a.somme-b.somme)[0]
                 }
+                value4 =Math.floor(Math.random()*objetTicketRealTime.tabGagnion.length)
+                if(objetTicketRealTime.tabGagnion.filter(ele=>ele.somme == objetTicketRealTime.tabGagnion[value4].somme).length>35){
+                  var conditionRouletteGagner=objetTicketRealTime.tabGagnion[value4]
+                  }
               admins[i].resultatRoulette= conditionRouletteGagner.condition;
             
               objetTicketRealTime.condition= conditionRouletteGagner.condition;
@@ -338,11 +342,11 @@ cron.schedule('*/2 * * * *', async () => {
          //change Ticket
        
          
-         },60000);
+         },142000);
          setTimeout(async function  redemarerChrono() {
           clearInterval(intervalID );
            temps=0
-         }, 120000)
+         }, 180000)
          
         //  console.log(ticketGlobale ,'somme')
       //   setTimeout(TimePause, 5000);
