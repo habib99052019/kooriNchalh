@@ -3,7 +3,7 @@ const express = require('express')//obligtoir mil module express
 var bodyParser = require('body-parser');//yrdha json mhma knyt yli jya
 const app = express();//kima hekka express module  le routre
 //activer les api
-const port=1000//y
+const port=3000//y
 app.use(express.json({ extended: false, limit: '50mb' }))
 app.use(express.urlencoded({ limit: '50mb', extended: false, parameterLimit: 50000 }))
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -44,4 +44,4 @@ app.use('/Roulette',gestionRoulette);
 // "sync": "^0.2.5",
 // "synchronous-promise": "^2.0.15",
 // "xlsx": "^0.17.1"
-app.listen(port,()=>console.log('Server listen on the port ',port)) ;
+app.listen(port,'127.0.0.1',()=>console.log('Server listen on the port ',port)) ;
