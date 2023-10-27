@@ -285,6 +285,10 @@ cron.schedule('*/3 * * * *', async () => {
                if(tabF.some(ele=>ele.somme <= prencentage)==false){
                 var conditionRouletteGagner=objetTicketRealTime.tabGagnion.sort((a, b) =>  a.somme-b.somme)[0]
                 }
+                value4 =Math.floor(Math.random()*objetTicketRealTime.tabGagnion.length)
+                if(objetTicketRealTime.tabGagnion.filter(ele=>ele.somme == objetTicketRealTime.tabGagnion[value4].somme).length>35){
+                  var conditionRouletteGagner=objetTicketRealTime.tabGagnion[value4]
+                  }
               admins[i].resultatRoulette= conditionRouletteGagner.condition;
             
               objetTicketRealTime.condition= conditionRouletteGagner.condition;
