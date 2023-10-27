@@ -178,7 +178,7 @@ router.post('/numeroGanyon/:id', async (req, res) => {
     
 });
 
-cron.schedule('*/2 * * * *', async () => {
+cron.schedule('*/3 * * * *', async () => {
   tabJoueurGan=[]
   testExcution=false
  
@@ -201,7 +201,7 @@ cron.schedule('*/2 * * * *', async () => {
    setTimeout(async function  redemarerChrono1() {
     test=false
   // console.log(test,'helloTest')
-   },50000 )
+   },140000 )
         
         setTimeout(async function  excution() {
           test=false
@@ -338,11 +338,11 @@ cron.schedule('*/2 * * * *', async () => {
          //change Ticket
        
          
-         },60000);
+         },142000);
          setTimeout(async function  redemarerChrono() {
           clearInterval(intervalID );
            temps=0
-         }, 120000)
+         }, 180000)
          
         //  console.log(ticketGlobale ,'somme')
       //   setTimeout(TimePause, 5000);

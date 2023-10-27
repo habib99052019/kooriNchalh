@@ -23,8 +23,9 @@ router.get('/', async (req, res) => {
     
         res.send(admins)
 })
+
 router.get('/:id', async (req, res) => {
-    var admin=  await adminSchema.findById(req.params.id).populate('Listejoueurs');
+    var admin=  await adminSchema.findById(req.params.id).populate('Listejoueurs').populate('admins');
     res.send(admin)
 })
 router.get('/joueurs/:id', async (req, res) => {
@@ -46,6 +47,7 @@ router.post('/addAdmin', async (req, res) => {
    admin.password = await bcrypt.hash(admin.password, saltRounds);// pour crypter password
 
    await  admin.save();
+   await adminSchema.findByIdAndUpdate({ _id:req.body.superAdmin }, { $push: { admins: admin._id } })
    return res.send({
        message: true,
        id: admin._id

@@ -18,6 +18,7 @@ const  adminSchema  = new mongoose.Schema({
     prencentage:Number,
     Listejoueurs: [{ type: Schema.Types.ObjectId, ref:'joueurSchema'}],
     tickets: [{ type: Schema.Types.ObjectId, ref:'ticketSchema'}], 
+    admins: [{ type: Schema.Types.ObjectId, ref:'adminSchema'}], 
     text1:    {title:String,
                 value:String},
     text2:    {title:String,
