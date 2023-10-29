@@ -12,10 +12,6 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-
-    - name: test echo
-      #run: echo "$PRIVATE_SSH_KEY" > key.pem && chmod 600 key.pem
-      run: echo  "work"
       
     - name: Set up SSH key
       #run: echo "$PRIVATE_SSH_KEY" > key.pem && chmod 600 key.pem
@@ -26,4 +22,4 @@ jobs:
         #ssh  -o StrictHostKeyChecking=no -i key.pem ubuntu@51.222.111.185 'bash -s' < /home/ubuntu/koorea_project/launch_backend.sh
         ssh  -o StrictHostKeyChecking=no -i key.pem ubuntu@51.222.111.185 "sh /home/ubuntu/koorea_project/launch_backend.sh"
       env:
-        PRIVATE_SSH_KEY: ${{ secrets.PRIVATE_SSH_KEY }}
+        PRIVATE_SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
