@@ -10,14 +10,13 @@ jobs:
     runs-on: ubuntu-latest  # Use the latest Ubuntu runner
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-
     - name: Set up SSH key
-      run: echo "$PRIVATE_SSH_KEY" > key.pem && chmod 600 key.pem
+      run: |
+        install -m 600 -D /dev/null ~/.ssh/id_rsa
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+        ssh-keyscan -H 51.222.111.183 > ~/.ssh/known_hosts
 
     - name: Run the script on the remote VM
       run: |
-        ssh  -o StrictHostKeyChecking=no -i key.pem ubuntu@51.222.111.185 'bash -s' < /home/ubuntu/koorea_project/launch_backend.sh
-      env:
-        PRIVATE_SSH_KEY: ${{ secrets.PRIVATE_SSH_KEY }}
+        ssh ubuntu@51.222.111.185 "sh /home/ubuntu/koorea_project/launch_backend.sh"
+
