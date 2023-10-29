@@ -18,6 +18,6 @@ jobs:
 
     - name: Run the script on the remote VM
       run: |
-        ssh -i key.pem ubuntu@51.222.111.185 'bash -s' < /home/ubuntu/koorea_project/launch_backend.sh
+        ssh  -o StrictHostKeyChecking=no -i key.pem ubuntu@51.222.111.185 'bash -s' < /home/ubuntu/koorea_project/launch_backend.sh
       env:
         PRIVATE_SSH_KEY: ${{ secrets.PRIVATE_SSH_KEY }}
