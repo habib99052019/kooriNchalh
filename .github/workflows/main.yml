@@ -14,18 +14,19 @@ jobs:
       uses: actions/checkout@v2
 
     - name: test ssh
-      run: echo "{{ secrets.SSH_PRIVATE_KEY }}"
+      run: echo "${{ secrets.SSH_PRIVATE_KEY }}"
       
     - name: eval ssh-agent
       run: eval $(ssh-agent -s)
       
     - name: Set up SSH key
+      env:
+        PRIVATE_SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
       #run: echo "{{secrets.SSH_PRIVATE_KEY}}" > key.pem && chmod 600 key.pem
-      run: echo "{{secrets.SSH_PRIVATE_KEY}}" | ssh-add -
+      run: echo "$PRIVATE_SSH_KEY" | ssh-add -
 
     - name: Run the script on the remote VM
       run: |
         #ssh  -o StrictHostKeyChecking=no -i key.pem ubuntu@51.222.111.185 'bash -s' < /home/ubuntu/koorea_project/launch_backend.sh
-        ssh  -o StrictHostKeyChecking=no -i key.pem ubuntu@51.222.111.185 "sh /home/ubuntu/koorea_project/launch_backend.sh"
-      env:
-        PRIVATE_SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        ssh  -o StrictHostKeyChecking=no ubuntu@51.222.111.185 "sh /home/ubuntu/koorea_project/launch_backend.sh"
+
