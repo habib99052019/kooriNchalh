@@ -13,6 +13,10 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
+    - name: test echo
+      #run: echo "$PRIVATE_SSH_KEY" > key.pem && chmod 600 key.pem
+      run: echo  "$work"
+      
     - name: Set up SSH key
       #run: echo "$PRIVATE_SSH_KEY" > key.pem && chmod 600 key.pem
       run: echo  "$PRIVATE_SSH_KEY"
