@@ -18,5 +18,5 @@ jobs:
 
     - name: Run the script on the remote VM
       run: |
-        ssh ubuntu@51.222.111.185 "sh /home/ubuntu/koorea_project/launch_backend.sh"
+        ssh ubuntu@51.222.111.183 "cd /home/ubuntu/koorea_project/ && sh ./launch_backend.sh"
 
