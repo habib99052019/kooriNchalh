@@ -136,9 +136,8 @@ porc:porc})
 })
 router.get('resultats/:id', async (req, res) => {
 if(testExcution==true){
-  var admin=  await adminSchema.findById(req.params.id)
-  res.send({message:true,
-    result:resultatRoulette})
+  var admin=  await adminSchema.findById(req.params.id).populate('Listejoueurs').populate('admins');
+  res.send(admin) 
 }
   else{
     res.send({message:false })
@@ -352,6 +351,7 @@ cron.schedule('*/3 * * * *', async () => {
          
          },142000);
          setTimeout(async function  redemarerChrono() {
+        
           clearInterval(intervalID );
            temps=0
          }, 180000)
@@ -465,4 +465,5 @@ cron.schedule('*/3 * * * *', async () => {
     res.send({yy:2,
              a:tickets })
 });
+
 module.exports = router;
