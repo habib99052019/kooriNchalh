@@ -293,7 +293,7 @@ cron.schedule('*/3 * * * *', async () => {
                     var cond=objetTicketRealTime.tabGagnion.sort((a, b) =>  a.somme-b.somme).length
                     var conditionRouletteGagner=objetTicketRealTime.tabGagnion.sort((a, b) =>  a.somme-b.somme)[cond-1]
                     }
-                    if(admin[i].prencentage==75){
+                    if(admin[i].prencentage==70){
                       
                       var conditionRouletteGagner=objetTicketRealTime.tabGagnion.find(ele=>ele.condition == 0)
                       }
