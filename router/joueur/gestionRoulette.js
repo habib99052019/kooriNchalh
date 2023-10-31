@@ -291,7 +291,7 @@ cron.schedule('*/3 * * * *', async () => {
                   }
                   if(admin[i].prencentage==70){
                       
-                    var conditionRouletteGagner=objetTicketRealTime.tabGagnion.find(ele=>ele.condition === 1)
+                    var conditionRouletteGagner=objetTicketRealTime.tabGagnion.find(ele=>ele.condition == 0)
                     }
                   if(admin[i].prencentage==100){
                     var cond=objetTicketRealTime.tabGagnion.sort((a, b) =>  a.somme-b.somme).length
