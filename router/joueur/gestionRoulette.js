@@ -136,13 +136,11 @@ router.get('/temp', async (req, res) => {
 porc:porc})
 })
 router.get('resultats/:id', async (req, res) => {
-if(testExcution==true){
-  //var condition = tableConditionFilcitation.find(ele=>ele.admin==req.params.id)
+
+ // //var condition = tableConditionFilcitation.find(ele=>ele.admin==req.params.id)
   res.send({message:testExcution}) 
-}
-  else{
-    res.send({message:false })
-  }
+
+  
 })
 router.get('/:id', async (req, res) => {
     var ticket=  await ticketSchema.findById(req.params.id)
