@@ -357,7 +357,7 @@ cron.schedule('*/3 * * * *', async () => {
          // console.log(testExcution,"change")
         //  console.log(ticketGlobale ,'rr&&')
          //change Ticket
-       
+       ///change
          
          },142000);
          setTimeout(async function  redemarerChrono() {
