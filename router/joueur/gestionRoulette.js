@@ -135,7 +135,7 @@ router.get('/temp', async (req, res) => {
   solde:solde1,
 porc:porc})
 })
-router.get('resultats/:id', async (req, res) => {
+router.get('re/:id', async (req, res) => {
 
  // //var condition = tableConditionFilcitation.find(ele=>ele.admin==req.params.id)
   res.send({message:testExcution}) 
