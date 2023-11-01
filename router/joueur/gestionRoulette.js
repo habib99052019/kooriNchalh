@@ -15,6 +15,7 @@ var porc=0
 var tob=[]
 var solde1=0
 var tabf2=[]
+var tableConditionFilcitation=[]
 setInterval( function affiche() {
    
  
@@ -136,8 +137,8 @@ porc:porc})
 })
 router.get('resultats/:id', async (req, res) => {
 if(testExcution==true){
-  var admin=  await adminSchema.findById(req.params.id).populate('Listejoueurs').populate('admins');
-  res.send(admin) 
+  var condition = tableConditionFilcitation.find(ele=>ele.admin==req.params.id)
+  res.send(condition ) 
 }
   else{
     res.send({message:false })
@@ -203,6 +204,7 @@ cron.schedule('*/3 * * * *', async () => {
    },140000 )
         
         setTimeout(async function  excution() {
+          tableConditionFilcitation=[]
           test=false
           var admins=  await adminSchema.find().populate('tickets')
         //  console.log(admins,'ronaldo' )
@@ -215,6 +217,8 @@ cron.schedule('*/3 * * * *', async () => {
                      if(tab.length ==0) {
                       var val=Math.floor(Math.random()*36)+1
                       admins[i].resultatRoulette=val
+                      tableConditionFilcitation.push({condition:val,
+                        admin:admins[i]._id  })
                       console.log(admins[i].resultatRoulette ,'rrruslt')
                       admins[i].hist.unshift(val)
                       await admins[i].save()
@@ -297,7 +301,8 @@ cron.schedule('*/3 * * * *', async () => {
                     }
                     
               admins[i].resultatRoulette= conditionRouletteGagner.condition;
-            
+              tableConditionFilcitation.push({condition:conditionRouletteGagner.condition,
+                                               admin:admins[i]._id  })
               objetTicketRealTime.condition= conditionRouletteGagner.condition;
 
               admins[i].solde=admins[i].solde+(objetTicketRealTime.soldeTicket-conditionRouletteGagner.somme)
