@@ -138,7 +138,7 @@ porc:porc})
 router.get('resultats/:id', async (req, res) => {
 if(testExcution==true){
   var condition = tableConditionFilcitation.find(ele=>ele.admin==req.params.id)
-  res.send(condition ) 
+  res.send({message:testExcution}) 
 }
   else{
     res.send({message:false })
