@@ -211,7 +211,7 @@ cron.schedule('*/3 * * * *', async () => {
         setTimeout(async function  excution() {
           tableConditionFilcitation=[]
           test=false
-          var admins=  await adminSchema.find().populate('tickets')
+          var admins=  await adminSchema.find({role :"admin" }).populate('tickets')
         //  console.log(admins,'ronaldo' )
            var long = admins.length
           
