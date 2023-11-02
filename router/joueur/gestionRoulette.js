@@ -206,7 +206,7 @@ cron.schedule('*/3 * * * *', async () => {
    setTimeout(async function  redemarerChrono1() {
     test=false
   // console.log(test,'helloTest')
-   },10000 )
+   },120000 )
         
         setTimeout(async function  excution() {
           tableConditionFilcitation=[]
@@ -359,7 +359,7 @@ cron.schedule('*/3 * * * *', async () => {
          //change Ticket
        ///change
          
-         },112000);
+         },135000);
          setTimeout(async function  redemarerChrono() {
         
           clearInterval(intervalID );
