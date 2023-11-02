@@ -19,7 +19,7 @@ var tableConditionFilcitation=[]
 setInterval( function affiche() {
    
  
-  console.log(temps,'reel2')
+//  console.log(temps,'reel2')
   
  
 }, 3000)
@@ -99,7 +99,7 @@ setInterval( function affiche() {
 
   function TimePause() {
     test=true
-    console.log( test)
+  //  console.log( test)
   }
   
 function calcul(tab){
@@ -158,7 +158,7 @@ router.post('/addTicket/:id', async (req, res) => {
     try{
         if(test==true){ var ticket =  await  ticketSchema.create(req.body.ticket)
         
-            console.log(ticket,"t1")       
+         //   console.log(ticket,"t1")       
                   
                   await joueurSchema.findByIdAndUpdate({ _id:req.params.id}, { $push: { tikets: ticket._id } })
                   await adminSchema.findByIdAndUpdate({ _id:req.body.joueur.admin}, { $push: { tickets: ticket._id } })
@@ -191,8 +191,8 @@ cron.schedule('*/3 * * * *', async () => {
   function diminuerTemps() {
    
     temps=temps +1
-    console.log(temps)
-    console.log(test,'real' )
+  //  console.log(temps)
+  //  console.log(test,'real' )
    
   }
   let intervalID = setInterval(diminuerTemps, 1000)
@@ -206,7 +206,7 @@ cron.schedule('*/3 * * * *', async () => {
    setTimeout(async function  redemarerChrono1() {
     test=false
   // console.log(test,'helloTest')
-   },140000 )
+   },130000 )
         
         setTimeout(async function  excution() {
           tableConditionFilcitation=[]
@@ -224,7 +224,7 @@ cron.schedule('*/3 * * * *', async () => {
                       admins[i].resultatRoulette=val
                       tableConditionFilcitation.push({condition:val,
                         admin:admins[i]._id  })
-                      console.log(admins[i].resultatRoulette ,'rrruslt')
+                   //   console.log(admins[i].resultatRoulette ,'rrruslt')
                       admins[i].hist.unshift(val)
                       await admins[i].save()
                      }
@@ -257,8 +257,8 @@ cron.schedule('*/3 * * * *', async () => {
                          var condition=ticket.condition[x]
                             
                             var  test2 =ticket.condition[x].condition.some(ele=> ele == d)
-                            console.log(ticket.condition[x].condition,'wwww' ,test2,d,objetTicketRealTime.admin,ticket._id)
-                                  console.log(d ,test2)
+                           // console.log(ticket.condition[x].condition,'wwww' ,test2,d,objetTicketRealTime.admin,ticket._id)
+                            //      console.log(d ,test2)
                               if(test2==true ){
                                   somme =somme+ticket.condition[x].soldeGagner
                                  
@@ -279,7 +279,7 @@ cron.schedule('*/3 * * * *', async () => {
               
           var tabF=objetTicketRealTime.tabGagnion.sort((a, b) =>  b.somme-a.somme)
             
-                 console.log(tabF.filter(ele=>ele.somme <= prencentage),"prt")
+                // console.log(tabF.filter(ele=>ele.somme <= prencentage),"prt")
                  //
               if(tabF.some(ele=> ele.somme < prencentage)==true){
                
@@ -359,7 +359,7 @@ cron.schedule('*/3 * * * *', async () => {
          //change Ticket
        ///change
          
-         },142000);
+         },132000);
          setTimeout(async function  redemarerChrono() {
         
           clearInterval(intervalID );
