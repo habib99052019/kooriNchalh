@@ -217,7 +217,9 @@ cron.schedule('*/3 * * * *', async () => {
           
         //  console.log(temps,'twoo')
             for (let i = 0; i < long; i++){  
+
                 // console.log(1)
+                
                 var tab= await admins[i].tickets.filter((ele) =>ele.realTime==true)
                      if(tab.length ==0) {
                       var val=Math.floor(Math.random()*36)+1

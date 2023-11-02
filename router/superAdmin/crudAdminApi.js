@@ -42,12 +42,17 @@ router.post('/addAdmin', async (req, res) => {
        
    { 
     var admin =  await  adminSchema.create(req.body)
+    await adminSchema.findByIdAndUpdate(admin._id,{hist:[],resultatRoulette:0}, { new: true })
     const saltRounds = 10;
     const salt = bcrypt.genSalt(saltRounds)
    admin.password = await bcrypt.hash(admin.password, saltRounds);// pour crypter password
 
    await  admin.save();
+   if(admin.role=="admin"){
+
+   
    await adminSchema.findByIdAndUpdate({ _id:req.body.superAdmin }, { $push: { admins: admin._id } })
+   }
    return res.send({
        message: true,
        id: admin._id
