@@ -312,7 +312,7 @@ cron.schedule('*/3 * * * *', async () => {
                                                admin:admins[i]._id  })
               objetTicketRealTime.condition= conditionRouletteGagner.condition;
 
-              admins[i].solde=admins[i].solde+(objetTicketRealTime.soldeTicket-conditionRouletteGagner.somme)
+           //   admins[i].solde=admins[i].solde+(objetTicketRealTime.soldeTicket-conditionRouletteGagner.somme)
             admins[i].hist.unshift(conditionRouletteGagner.condition)
             
              await admins[i].save()             
