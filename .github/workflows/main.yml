@@ -18,5 +18,5 @@ jobs:
 
     - name: Run the script on the remote VM
       run: |
-        ssh ubuntu@51.222.111.183 "cd /home/ubuntu/backend/ && git pull origin master && git fetch origin && cd /home/ubuntu && docker-compose down && docker-compose up --build -d backend"
+        ssh root@51.222.111.183 "cd /home/ubuntu/backend/ && git pull origin master && git fetch origin && cd /home/ubuntu && docker-compose down && docker-compose up --build -d backend"
 
