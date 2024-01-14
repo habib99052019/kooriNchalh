@@ -10,17 +10,12 @@ jobs:
     runs-on: ubuntu-latest  # Use the latest Ubuntu runner
 
     steps:
-    - name: Set up SSH key
-      run: |
-        mkdir -p ~/.ssh
-        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-        chmod 600 ~/.ssh/id_rsa
-        ssh-keyscan -H 51.222.111.183 >> ~/.ssh/known_hosts
-        chmod 644 ~/.ssh/known_hosts
+    - name: Install sshpass
+      run: sudo apt-get update && sudo apt-get install -y sshpass
 
-    - name: Deploy code to remote VM
+    - name: Run the script on the remote VM
       run: |
-        ssh -o StrictHostKeyChecking=no root@51.222.111.183 'cd /home/ubuntu/backend && \
+        sshpass -p "${{ secrets.SSH_PASSWORD }}" ssh -o StrictHostKeyChecking=no root@51.222.111.183 'cd /home/ubuntu/backend && \
           git pull origin master && \
           docker-compose down && \
           docker-compose up --build -d backend'
