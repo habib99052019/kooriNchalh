@@ -12,11 +12,15 @@ jobs:
     steps:
     - name: Set up SSH key
       run: |
-        install -m 600 -D /dev/null ~/.ssh/id_rsa
+        mkdir -p ~/.ssh
         echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-        ssh-keyscan -H 51.222.111.183 > ~/.ssh/known_hosts
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan -H 51.222.111.183 >> ~/.ssh/known_hosts
+        chmod 644 ~/.ssh/known_hosts
 
-    - name: Run the script on the remote VM
+    - name: Deploy code to remote VM
       run: |
-        ssh root@51.222.111.183 'cd /home/ubuntu/backend/ ; git pull origin master ; git fetch origin ; cd /home/ubuntu ; docker-compose down ; docker-compose up --build -d backend'
-
+        ssh -o StrictHostKeyChecking=no root@51.222.111.183 'cd /home/ubuntu/backend && \
+          git pull origin master && \
+          docker-compose down && \
+          docker-compose up --build -d backend'
