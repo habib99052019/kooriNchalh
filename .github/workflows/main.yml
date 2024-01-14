@@ -1,4 +1,4 @@
-name: SSHPass Example
+name: CI/CD for Backend
 
 on:
   push:
@@ -18,7 +18,7 @@ jobs:
       with:
         host: 51.222.111.183
         user: root
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        pass: ${{ secrets.SSH_PASSWORD }}
         run: |
           cd /home/ubuntu/backend
           git pull origin master
