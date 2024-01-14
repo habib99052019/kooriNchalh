@@ -1,4 +1,4 @@
-name: update on push
+name: SSHPass Example
 
 on:
   push:
@@ -7,15 +7,20 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest  # Use the latest Ubuntu runner
+    runs-on: ubuntu-latest
 
     steps:
-    - name: Install sshpass
-      run: sudo apt-get update && sudo apt-get install -y sshpass && sudo apt-get install -y git
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-    - name: Run the script on the remote VM
-      run: |
-        sshpass -p "${{ secrets.SSH_PASSWORD }}" ssh -o StrictHostKeyChecking=no root@51.222.111.183 'cd /home/ubuntu/backend && \
-          git pull origin master && \
-          docker-compose down && \
-          docker-compose up --build -d backend'
+    - name: Run sshpass commands
+      uses: matheusvanzan/sshpass-action@v2
+      with:
+        host: 51.222.111.183
+        user: root
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        run: |
+          cd /home/ubuntu/backend
+          git pull origin master
+          docker-compose down
+          docker-compose up --build -d backend
