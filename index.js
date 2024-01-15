@@ -5,7 +5,7 @@ const app = express();//kima hekka express module  le routre
 //lllloo
 //activer les api
 //aaaa
-const port=3000//y
+const port=5900//y
 app.use(express.json({ extended: false, limit: '50mb' }))
 app.use(express.urlencoded({ limit: '50mb', extended: false, parameterLimit: 50000 }))
 app.use(bodyParser.urlencoded({ extended: false }))
